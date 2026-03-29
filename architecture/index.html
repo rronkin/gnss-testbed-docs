@@ -1195,7 +1195,7 @@
 <li>Derive Doppler via numerical gradient of the corrected delay profile</li>
 </ul>
 <h3 id="3-gpu-signal-generation">3. GPU Signal Generation<a class="headerlink" href="#3-gpu-signal-generation" title="Permanent link">&para;</a></h3>
-<p>For each active band, the fused CUDA kernel processes all satellites simultaneously:</p>
+<p>For each active band, the fused CUDA kernel algorithmically maps the entire antenna array across thousands of parallel execution threads:</p>
 <ul>
 <li><strong>Baseband generation</strong>: PRN code lookup, navigation bit modulation, subcarrier generation (CBOC for Galileo E1)</li>
 <li><strong>Polyphase resampling</strong>: Fractional-delay filtering using a pre-computed Kaiser-windowed filter bank</li>

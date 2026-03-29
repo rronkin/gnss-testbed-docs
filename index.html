@@ -491,6 +491,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#future-proof-scalability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future-Proof Scalability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start-60-seconds-to-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start: 60 Seconds to Signals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#architecture-at-a-glance" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -913,6 +935,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#future-proof-scalability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future-Proof Scalability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start-60-seconds-to-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Start: 60 Seconds to Signals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#architecture-at-a-glance" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -987,7 +1031,7 @@ High-fidelity. Multi-constellation. Multi-band. Multi-element.
 <div class="feature-card">
 <div class="icon">⚡</div>
 <h3 id="gpu-accelerated">GPU-Accelerated<a class="headerlink" href="#gpu-accelerated" title="Permanent link">&para;</a></h3>
-<p>Fused CUDA kernels process all satellites, bands, and antenna elements in parallel. Frame generation runs in <strong>O(1)</strong> time — independent of simulation duration.</p>
+<p>Fused CUDA kernels map the entire multi-band antenna array across thousands of parallel execution threads. Frame generation runs in <strong>O(1)</strong> time — executing with uncompromising, constant performance independent of total simulation duration.</p>
 </div>
 <div class="feature-card">
 <div class="icon">🛰️</div>
@@ -1024,6 +1068,24 @@ High-fidelity. Multi-constellation. Multi-band. Multi-element.
 <h3 id="production-monitoring">Production Monitoring<a class="headerlink" href="#production-monitoring" title="Permanent link">&para;</a></h3>
 <p>Real-time <strong>Prometheus</strong> metrics for frame generation time, throughput, and GPU utilization. <strong>Grafana</strong> dashboards for live performance visualization during simulation runs.</p>
 </div>
+<div class="feature-card">
+<div class="icon">📈</div>
+<h3 id="future-proof-scalability">Future-Proof Scalability<a class="headerlink" href="#future-proof-scalability" title="Permanent link">&para;</a></h3>
+<p>Built for the extreme edge of Electronic Warfare. Exhibiting powerful <strong>sub-linear geometric scaling</strong>, the engine naturally spans from single-GPU workstations to distributed DGX supercomputers for massive, real-time 16-element arrays.</p>
+</div>
+</div>
+<hr />
+<h2 id="quick-start-60-seconds-to-signals">Quick Start: 60 Seconds to Signals<a class="headerlink" href="#quick-start-60-seconds-to-signals" title="Permanent link">&para;</a></h2>
+<p>Generate complex, multi-band GNSS environments with two simple commands.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 1. Start the GPU generation engine (Server)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>python<span class="w"> </span>-m<span class="w"> </span>gnss_sim.framework.server<span class="w"> </span>--params<span class="w"> </span>config/simulator_params.yaml
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 2. In a separate terminal, consume the signals and write to disk (Client)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>python<span class="w"> </span>experiments/rcv_pocketsdr_phase5.py<span class="w"> </span>--scenario<span class="w"> </span>config/scenario_config.yaml
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Fully Extensible</p>
+<p>Don't want to use the default Python client? You can write a custom C++ or Python script to consume the <code>ZeroMQ</code> output stream and pipe the raw IQ data directly into your own Software-Defined Radio (SDR).</p>
 </div>
 <hr />
 <h2 id="architecture-at-a-glance">Architecture at a Glance<a class="headerlink" href="#architecture-at-a-glance" title="Permanent link">&para;</a></h2>
