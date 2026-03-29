@@ -655,10 +655,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#timing-definitions" class="md-nav__link">
+  <a href="#recent-improvements-126a115-49000f9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Timing Definitions
+        🚀 Recent Improvements (126a115 → 49000f9)
       
     </span>
   </a>
@@ -666,10 +666,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#gpu-tiers" class="md-nav__link">
+  <a href="#timing-definitions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GPU Tiers
+        Timing Definitions
       
     </span>
   </a>
@@ -788,10 +788,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#timing-definitions" class="md-nav__link">
+  <a href="#recent-improvements-126a115-49000f9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Timing Definitions
+        🚀 Recent Improvements (126a115 → 49000f9)
       
     </span>
   </a>
@@ -799,10 +799,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#gpu-tiers" class="md-nav__link">
+  <a href="#timing-definitions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GPU Tiers
+        Timing Definitions
       
     </span>
   </a>
@@ -904,11 +904,56 @@
 
 
 <h1 id="performance-benchmarks">Performance Benchmarks<a class="headerlink" href="#performance-benchmarks" title="Permanent link">&para;</a></h1>
-<p>This page tracks the runtime performance of the GNSS Testbed Simulator across various scenarios and GPU tiers.</p>
+<p>This page tracks the runtime performance of the GNSS Testbed Simulator across various scenarios based on the latest runs.</p>
 <div class="admonition info">
 <p class="admonition-title">O(1) Frame Processing</p>
 <p>Each frame is processed in <strong>constant time</strong> regardless of total simulation duration. The values below represent <strong>per-frame</strong> processing times. Total simulation time scales linearly: <code>total_time = frames × time_per_frame</code>.</p>
 </div>
+<hr />
+<h2 id="recent-improvements-126a115-49000f9">🚀 Recent Improvements (<code>126a115</code> → <code>49000f9</code>)<a class="headerlink" href="#recent-improvements-126a115-49000f9" title="Permanent link">&para;</a></h2>
+<p>The transition to the new Blackwell architecture (<code>49000f9</code>) provided massive server-side frame generation speedups across all basic L1 configurations (measured at 6.1 MHz, 0 jammers):</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th style="text-align: center;">Server ms (<code>126a115</code>)</th>
+<th style="text-align: center;">Server ms (<code>49000f9</code>)</th>
+<th style="text-align: center;">Performance Gain</th>
+<th style="text-align: center;">Total ms (<code>49000f9</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 antenna</td>
+<td style="text-align: center;">14.32</td>
+<td style="text-align: center;"><strong>8.84</strong></td>
+<td style="text-align: center;">38% faster</td>
+<td style="text-align: center;">17.76</td>
+</tr>
+<tr>
+<td>4 antennas</td>
+<td style="text-align: center;">30.94</td>
+<td style="text-align: center;"><strong>17.89</strong></td>
+<td style="text-align: center;">42% faster</td>
+<td style="text-align: center;">53.48</td>
+</tr>
+<tr>
+<td>8 antennas</td>
+<td style="text-align: center;">51.41</td>
+<td style="text-align: center;"><strong>28.09</strong></td>
+<td style="text-align: center;">45% faster</td>
+<td style="text-align: center;">133.02</td>
+</tr>
+<tr>
+<td>16 antennas</td>
+<td style="text-align: center;">93.42</td>
+<td style="text-align: center;"><strong>49.82</strong></td>
+<td style="text-align: center;">46% faster</td>
+<td style="text-align: center;">402.85</td>
+</tr>
+</tbody>
+</table>
+<p><em>Note: All detailed metrics below are derived from the latest <code>49000f9</code> build running on NVIDIA RTX PRO 4500 Blackwell.</em></p>
 <hr />
 <h2 id="timing-definitions">Timing Definitions<a class="headerlink" href="#timing-definitions" title="Permanent link">&para;</a></h2>
 <table>
@@ -938,46 +983,13 @@
 </tbody>
 </table>
 <hr />
-<h2 id="gpu-tiers">GPU Tiers<a class="headerlink" href="#gpu-tiers" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Tier</th>
-<th>Example GPUs</th>
-<th>VRAM</th>
-<th>Typical Use</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>🟢 <strong>High-End</strong></td>
-<td>A100 (80 GB), H100</td>
-<td>40–80 GB</td>
-<td>Cloud deployment, max throughput</td>
-</tr>
-<tr>
-<td>🟡 <strong>Mid-Range</strong></td>
-<td>RTX 4090, A6000</td>
-<td>16–48 GB</td>
-<td>Workstation, development</td>
-</tr>
-<tr>
-<td>🔴 <strong>Entry</strong></td>
-<td>RTX 3060, T4</td>
-<td>8–16 GB</td>
-<td>Evaluation, small scenarios</td>
-</tr>
-</tbody>
-</table>
-<hr />
 <h2 id="single-band-scenarios-gps-l1-only">Single-Band Scenarios (GPS L1 Only)<a class="headerlink" href="#single-band-scenarios-gps-l1-only" title="Permanent link">&para;</a></h2>
+<p>0 jammers.</p>
 <table>
 <thead>
 <tr>
 <th>Scenario</th>
-<th>Satellites</th>
 <th>Elements</th>
-<th>Jammers</th>
 <th>Sample Rate</th>
 <th style="text-align: center;">Server (ms)</th>
 <th style="text-align: center;">Comm (ms)</th>
@@ -987,93 +999,60 @@
 </thead>
 <tbody>
 <tr>
-<td>Static, 1 antenna</td>
-<td>~10</td>
+<td>1 antenna</td>
 <td>1</td>
-<td>0</td>
-<td>6.138 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td>6.1 MHz</td>
+<td style="text-align: center;">8.84</td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">8.42</td>
+<td style="text-align: center;">17.76</td>
 </tr>
 <tr>
-<td>Static, 1 antenna</td>
-<td>~10</td>
+<td>1 antenna</td>
 <td>1</td>
-<td>0</td>
-<td>24.552 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td>12.3 MHz</td>
+<td style="text-align: center;">12.46</td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">17.68</td>
+<td style="text-align: center;">30.64</td>
 </tr>
 <tr>
-<td>Static, 1 antenna</td>
-<td>~10</td>
+<td>1 antenna</td>
 <td>1</td>
-<td>0</td>
-<td>50.0 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td>24.6 MHz</td>
+<td style="text-align: center;">20.62</td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">32.10</td>
+<td style="text-align: center;">53.22</td>
 </tr>
 <tr>
-<td>Static, 4 antennas</td>
-<td>~10</td>
+<td>4 antennas</td>
 <td>4</td>
-<td>0</td>
-<td>6.138 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td>6.1 MHz</td>
+<td style="text-align: center;">17.89</td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">35.09</td>
+<td style="text-align: center;">53.48</td>
 </tr>
 <tr>
-<td>Static, 4 antennas</td>
-<td>~10</td>
+<td>4 antennas</td>
 <td>4</td>
-<td>0</td>
-<td>24.552 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-</tr>
-<tr>
-<td>Dynamic, 1 antenna</td>
-<td>~10</td>
-<td>1</td>
-<td>0</td>
-<td>6.138 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-</tr>
-<tr>
-<td>Dynamic, 4 antennas</td>
-<td>~10</td>
-<td>4</td>
-<td>0</td>
-<td>6.138 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td>24.6 MHz</td>
+<td style="text-align: center;">50.01</td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">118.73</td>
+<td style="text-align: center;">169.24</td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h2 id="dual-band-scenarios-gps-l1-l2">Dual-Band Scenarios (GPS L1 + L2)<a class="headerlink" href="#dual-band-scenarios-gps-l1-l2" title="Permanent link">&para;</a></h2>
+<p>0 jammers.</p>
 <table>
 <thead>
 <tr>
 <th>Scenario</th>
-<th>Satellites</th>
 <th>Elements</th>
-<th>Jammers</th>
 <th>Sample Rate</th>
 <th style="text-align: center;">Server (ms)</th>
 <th style="text-align: center;">Comm (ms)</th>
@@ -1083,71 +1062,51 @@
 </thead>
 <tbody>
 <tr>
-<td>Static, 1 antenna</td>
-<td>~10</td>
+<td>1 antenna</td>
 <td>1</td>
-<td>0</td>
-<td>6.138 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td>6.1 MHz</td>
+<td style="text-align: center;">13.25</td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">15.09</td>
+<td style="text-align: center;">28.84</td>
 </tr>
 <tr>
-<td>Static, 4 antennas</td>
-<td>~10</td>
-<td>4</td>
-<td>0</td>
-<td>6.138 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-</tr>
-<tr>
-<td>Dynamic, 1 antenna</td>
-<td>~10</td>
+<td>1 antenna</td>
 <td>1</td>
-<td>0</td>
-<td>6.138 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td>24.6 MHz</td>
+<td style="text-align: center;">31.65</td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">51.55</td>
+<td style="text-align: center;">83.70</td>
 </tr>
 <tr>
-<td>Dynamic, 4 antennas</td>
-<td>~10</td>
+<td>4 antennas</td>
 <td>4</td>
-<td>0</td>
-<td>6.138 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td>6.1 MHz</td>
+<td style="text-align: center;">27.25</td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">66.66</td>
+<td style="text-align: center;">94.41</td>
 </tr>
 <tr>
-<td>Dynamic, 4 antennas</td>
-<td>~10</td>
+<td>4 antennas</td>
 <td>4</td>
-<td>0</td>
-<td>24.552 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td>24.6 MHz</td>
+<td style="text-align: center;">87.03</td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">231.31</td>
+<td style="text-align: center;">318.84</td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h2 id="multi-constellation-scenarios-gps-l1-galileo-e1">Multi-Constellation Scenarios (GPS L1 + Galileo E1)<a class="headerlink" href="#multi-constellation-scenarios-gps-l1-galileo-e1" title="Permanent link">&para;</a></h2>
+<p>0 jammers.</p>
 <table>
 <thead>
 <tr>
 <th>Scenario</th>
-<th>Satellites</th>
 <th>Elements</th>
-<th>Jammers</th>
 <th>Sample Rate</th>
 <th style="text-align: center;">Server (ms)</th>
 <th style="text-align: center;">Comm (ms)</th>
@@ -1157,37 +1116,40 @@
 </thead>
 <tbody>
 <tr>
-<td>Static, 1 antenna</td>
-<td>~18</td>
+<td>1 antenna</td>
 <td>1</td>
-<td>0</td>
-<td>6.138 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td>6.1 MHz</td>
+<td style="text-align: center;">17.82</td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">16.94</td>
+<td style="text-align: center;">35.26</td>
 </tr>
 <tr>
-<td>Static, 4 antennas</td>
-<td>~18</td>
-<td>4</td>
-<td>0</td>
-<td>6.138 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td>1 antenna</td>
+<td>1</td>
+<td>24.6 MHz</td>
+<td style="text-align: center;">46.59</td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">54.45</td>
+<td style="text-align: center;">101.54</td>
 </tr>
 <tr>
-<td>Dynamic, 4 antennas</td>
-<td>~18</td>
+<td>4 antennas</td>
 <td>4</td>
-<td>0</td>
-<td>6.138 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td>6.1 MHz</td>
+<td style="text-align: center;">41.53</td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">65.83</td>
+<td style="text-align: center;">107.86</td>
+</tr>
+<tr>
+<td>4 antennas</td>
+<td>4</td>
+<td>24.6 MHz</td>
+<td style="text-align: center;">143.58</td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">234.50</td>
+<td style="text-align: center;">378.58</td>
 </tr>
 </tbody>
 </table>
@@ -1196,11 +1158,9 @@
 <table>
 <thead>
 <tr>
-<th>Scenario</th>
-<th>Satellites</th>
+<th>Config</th>
 <th>Elements</th>
 <th>Jammers</th>
-<th>Jammer Types</th>
 <th>Sample Rate</th>
 <th style="text-align: center;">Server (ms)</th>
 <th style="text-align: center;">Comm (ms)</th>
@@ -1210,74 +1170,54 @@
 </thead>
 <tbody>
 <tr>
-<td>1 CW jammer</td>
-<td>~10</td>
+<td>L1</td>
 <td>1</td>
-<td>1</td>
-<td>CW</td>
-<td>6.138 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td>20</td>
+<td>6.1 MHz</td>
+<td style="text-align: center;">13.10</td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">8.81</td>
+<td style="text-align: center;">22.41</td>
 </tr>
 <tr>
-<td>2 mixed jammers</td>
-<td>~10</td>
-<td>1</td>
-<td>2</td>
-<td>CW + Noise</td>
-<td>6.138 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-</tr>
-<tr>
-<td>5 mixed jammers</td>
-<td>~10</td>
+<td>L1</td>
 <td>4</td>
-<td>5</td>
-<td>CW + FM + BPSK</td>
-<td>6.138 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td>20</td>
+<td>6.1 MHz</td>
+<td style="text-align: center;">22.82</td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">38.25</td>
+<td style="text-align: center;">61.57</td>
 </tr>
 <tr>
-<td>10 mixed jammers</td>
-<td>~10</td>
+<td>L1</td>
 <td>4</td>
-<td>10</td>
-<td>Mixed</td>
-<td>6.138 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td>100</td>
+<td>6.1 MHz</td>
+<td style="text-align: center;">44.22</td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">37.11</td>
+<td style="text-align: center;">81.83</td>
 </tr>
 <tr>
-<td>2 jammers, dual-band</td>
-<td>~10</td>
+<td>L1+L2</td>
 <td>4</td>
-<td>2</td>
-<td>CW + Noise</td>
-<td>6.138 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td>20</td>
+<td>6.1 MHz</td>
+<td style="text-align: center;">43.69</td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">64.97</td>
+<td style="text-align: center;">109.16</td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h2 id="stress-test-scenarios">Stress Test Scenarios<a class="headerlink" href="#stress-test-scenarios" title="Permanent link">&para;</a></h2>
+<p>Extreme configurations designed to push bandwidth and compute.</p>
 <table>
 <thead>
 <tr>
 <th>Scenario</th>
-<th>Satellites</th>
 <th>Elements</th>
 <th>Jammers</th>
 <th>Sample Rate</th>
@@ -1289,54 +1229,31 @@
 </thead>
 <tbody>
 <tr>
-<td>Max satellites, L1</td>
-<td>~32</td>
-<td>1</td>
-<td>0</td>
-<td>6.138 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-</tr>
-<tr>
-<td>Max everything</td>
-<td>~32</td>
-<td>4</td>
-<td>10</td>
-<td>50.0 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-</tr>
-<tr>
-<td>High sample rate</td>
-<td>~10</td>
-<td>1</td>
-<td>0</td>
-<td>50.0 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-</tr>
-<tr>
-<td>16-element array</td>
-<td>~10</td>
+<td>Massive Client Load</td>
 <td>16</td>
 <td>0</td>
-<td>6.138 MHz</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td>6.1 MHz</td>
+<td style="text-align: center;">49.82</td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">352.53</td>
+<td style="text-align: center;">402.85</td>
+</tr>
+<tr>
+<td>Max Gen Limits (L1+L2+GalE1)</td>
+<td>16</td>
+<td>100</td>
+<td>24.6 MHz</td>
+<td style="text-align: center;">1833.79</td>
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">1104.11</td>
+<td style="text-align: center;">2938.40</td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h2 id="gpu-comparison-same-scenario">GPU Comparison (Same Scenario)<a class="headerlink" href="#gpu-comparison-same-scenario" title="Permanent link">&para;</a></h2>
-<p><strong>Baseline scenario:</strong> Static, GPS L1, ~10 satellites, 1 antenna, 6.138 MHz, 0 jammers.</p>
+<p><strong>Baseline scenario:</strong> GPS L1, 1 antenna, 6.1 MHz, 0 jammers.</p>
+<p><em>(Comparing older data to the latest tier GPUs)</em></p>
 <table>
 <thead>
 <tr>
@@ -1345,7 +1262,7 @@
 <th>CUDA Cores</th>
 <th style="text-align: center;">Server (ms)</th>
 <th style="text-align: center;">Total (ms)</th>
-<th style="text-align: center;">Slowdown Factor</th>
+<th style="text-align: center;">Generation</th>
 </tr>
 </thead>
 <tbody>
@@ -1355,7 +1272,7 @@
 <td>16,896</td>
 <td style="text-align: center;">—</td>
 <td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td style="text-align: center;">Hopper</td>
 </tr>
 <tr>
 <td>NVIDIA A100</td>
@@ -1363,39 +1280,31 @@
 <td>6,912</td>
 <td style="text-align: center;">—</td>
 <td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td style="text-align: center;">Ampere</td>
 </tr>
 <tr>
-<td>NVIDIA A6000</td>
-<td>48 GB</td>
-<td>10,752</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td>NVIDIA RTX PRO 4500</td>
+<td>32 GB</td>
+<td>14,208</td>
+<td style="text-align: center;">8.84</td>
+<td style="text-align: center;">17.76</td>
+<td style="text-align: center;">Blackwell (<code>49000f9</code>)</td>
 </tr>
 <tr>
-<td>NVIDIA RTX 4090</td>
-<td>24 GB</td>
-<td>16,384</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td>NVIDIA RTX A4500</td>
+<td>20 GB</td>
+<td>7,168</td>
+<td style="text-align: center;">14.32</td>
+<td style="text-align: center;">23.53</td>
+<td style="text-align: center;">Ampere (<code>126a115</code>)</td>
 </tr>
 <tr>
-<td>NVIDIA RTX 3060</td>
-<td>12 GB</td>
-<td>3,584</td>
+<td>AMD EPYC ONLY</td>
+<td>-</td>
+<td>(CPU setup)</td>
 <td style="text-align: center;">—</td>
 <td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-</tr>
-<tr>
-<td>NVIDIA T4</td>
-<td>16 GB</td>
-<td>2,560</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
-<td style="text-align: center;">—</td>
+<td style="text-align: center;">-</td>
 </tr>
 </tbody>
 </table>
