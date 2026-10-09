@@ -6,24 +6,26 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="GPU-Accelerated GNSS Signal Simulation Engine — High-Fidelity, Multi-Constellation, Multi-Band">
+        <meta name="description" content="GPU-accelerated GNSS signal simulator — multi-constellation, multi-band, multi-element, with interference.">
       
       
       
+        <link rel="canonical" href="https://rronkin.github.io/gnss-testbed-docs/">
       
       
-        <link rel="next" href="architecture/">
+      
+        <link rel="next" href="getting-started/">
       
       
         
       
       
-      <link rel="icon" href=".">
+      <link rel="icon" href="assets/logo.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>GNSS Testbed Simulator</title>
+        <title>Home - GNSS Testbed Simulator</title>
       
     
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="cyan">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -76,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#gnss-testbed-simulator" class="md-skip">
+        <a href="#gnss-signals-generated-on-a-gpu" class="md-skip">
           Skip to content
         </a>
       
@@ -88,12 +90,13 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="." title="GNSS Testbed Simulator" class="md-header__button md-logo" aria-label="GNSS Testbed Simulator" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m11.62 1 5.66 5.67-2.12 2.12-2.12-2.12-1.42 1.42 2.33 2.32-1.16 1.17.45.46a2.5 2.5 0 0 1 2.83.5l-3.53 3.53a2.5 2.5 0 0 1-.5-2.83l-.46-.45-1.17 1.16-2.32-2.33-1.42 1.42 2.12 2.12-2.12 2.12L1 11.62 3.14 9.5l2.12 2.12 1.41-1.41-2.83-2.83c-.78-.78-.78-2.05 0-2.83l.71-.71c.78-.78 2.05-.78 2.83 0l2.83 2.83 1.41-1.41L9.5 3.14zM18 14a4 4 0 0 1-4 4v-2a2 2 0 0 0 2-2zm4 0a8 8 0 0 1-8 8v-2a6 6 0 0 0 6-6z"/></svg>
+  <img src="assets/logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -123,20 +126,20 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
   
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
   
@@ -173,6 +176,8 @@
         </button>
       </nav>
       
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
@@ -191,14 +196,8 @@
     
   </nav>
   
-</header>
     
-    <div class="md-container" data-md-component="container">
       
-      
-        
-          
-            
 <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
@@ -229,17 +228,20 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="architecture/" class="md-tabs__link">
-        
+    
+    
+      <li class="md-tabs__item">
+        <a href="getting-started/" class="md-tabs__link">
+          
   
   
     
   
-  Architecture
+  Get started
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -251,11 +253,57 @@
     
     
       <li class="md-tabs__item">
-        <a href="user-guide/getting-started/" class="md-tabs__link">
+        <a href="deploy/" class="md-tabs__link">
           
   
   
-  User Guide
+    
+  
+  Deploy
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="user-guide/configuration/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  User guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="architecture/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  How it works
 
         </a>
       </li>
@@ -269,32 +317,13 @@
   
   
     <li class="md-tabs__item">
-      <a href="examples/" class="md-tabs__link">
+      <a href="troubleshooting/" class="md-tabs__link">
         
   
   
     
   
-  Examples
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="benchmarks/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Performance
+  Troubleshooting
 
       </a>
     </li>
@@ -304,7 +333,13 @@
     </ul>
   </div>
 </nav>
-          
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
       
       <main class="md-main" data-md-component="main">
@@ -327,8 +362,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="." title="GNSS Testbed Simulator" class="md-nav__button md-logo" aria-label="GNSS Testbed Simulator" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m11.62 1 5.66 5.67-2.12 2.12-2.12-2.12-1.42 1.42 2.33 2.32-1.16 1.17.45.46a2.5 2.5 0 0 1 2.83.5l-3.53 3.53a2.5 2.5 0 0 1-.5-2.83l-.46-.45-1.17 1.16-2.32-2.33-1.42 1.42 2.12 2.12-2.12 2.12L1 11.62 3.14 9.5l2.12 2.12 1.41-1.41-2.83-2.83c-.78-.78-.78-2.05 0-2.83l.71-.71c.78-.78 2.05-.78 2.83 0l2.83 2.83 1.41-1.41L9.5 3.14zM18 14a4 4 0 0 1-4 4v-2a2 2 0 0 0 2-2zm4 0a8 8 0 0 1-8 8v-2a6 6 0 0 0 6-6z"/></svg>
+  <img src="assets/logo.svg" alt="logo">
 
     </a>
     GNSS Testbed Simulator
@@ -403,10 +437,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#gpu-accelerated" class="md-nav__link">
+  <a href="#what-it-does" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GPU-Accelerated
+        What it does
       
     </span>
   </a>
@@ -414,10 +448,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#multi-constellation-multi-band" class="md-nav__link">
+  <a href="#how-a-run-works" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Multi-Constellation &amp; Multi-Band
+        How a run works
       
     </span>
   </a>
@@ -425,10 +459,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#antenna-array-simulation" class="md-nav__link">
+  <a href="#pick-your-path" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Antenna Array Simulation
+        Pick your path
       
     </span>
   </a>
@@ -436,120 +470,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#full-6-dof-dynamics" class="md-nav__link">
+  <a href="#why-software-and-why-a-gpu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Full 6-DoF Dynamics
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rich-interference-library" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rich Interference Library
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#physics-based-channel" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Physics-Based Channel
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#python-native-extensible" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Python-Native &amp; Extensible
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#production-monitoring" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production Monitoring
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#future-proof-scalability" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Future-Proof Scalability
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-start-60-seconds-to-signals" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Quick Start: 60 Seconds to Signals
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture-at-a-glance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Architecture at a Glance
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-this-matters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why This Matters
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#o1-frame-processing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        O(1) Frame Processing
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#pocketsdr-validated" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PocketSDR-Validated ✅
+        Why software, and why a GPU
       
     </span>
   </a>
@@ -570,34 +494,15 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="architecture/" class="md-nav__link">
+    
+    
+      
         
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Architecture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
+          
+        
       
+        
       
-  
-  
-  
-  
-    
     
     
     
@@ -611,19 +516,18 @@
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="getting-started/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
     
   
-    User Guide
+    Get started
   
 
     
@@ -631,19 +535,27 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
   
-    User Guide
+    Get started
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
             
               
                 
@@ -652,14 +564,14 @@
   
   
     <li class="md-nav__item">
-      <a href="user-guide/getting-started/" class="md-nav__link">
+      <a href="getting-started/installation/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Getting Started
+    Installation
   
 
     
@@ -672,6 +584,273 @@
   
 
               
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="deploy/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deploy
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deploy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deploy/server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPU server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deploy/client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recording client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deploy/air-gapped/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Air-gapped networks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deploy/monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
                 
@@ -708,6 +887,34 @@
   
   
     <li class="md-nav__item">
+      <a href="user-guide/signals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signals & interference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="user-guide/inputs/" class="md-nav__link">
         
   
@@ -715,7 +922,7 @@
   <span class="md-ellipsis">
     
   
-    Input Formats
+    Input files
   
 
     
@@ -743,7 +950,214 @@
   <span class="md-ellipsis">
     
   
-    Output Formats
+    Output files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="user-guide/ground-truth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ground truth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="user-guide/examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How it works
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    How it works
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signal fidelity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
   
 
     
@@ -771,41 +1185,14 @@
   
   
     <li class="md-nav__item">
-      <a href="examples/" class="md-nav__link">
+      <a href="troubleshooting/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Examples
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="benchmarks/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Performance
+    Troubleshooting
   
 
     
@@ -847,10 +1234,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#gpu-accelerated" class="md-nav__link">
+  <a href="#what-it-does" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GPU-Accelerated
+        What it does
       
     </span>
   </a>
@@ -858,10 +1245,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#multi-constellation-multi-band" class="md-nav__link">
+  <a href="#how-a-run-works" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Multi-Constellation &amp; Multi-Band
+        How a run works
       
     </span>
   </a>
@@ -869,10 +1256,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#antenna-array-simulation" class="md-nav__link">
+  <a href="#pick-your-path" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Antenna Array Simulation
+        Pick your path
       
     </span>
   </a>
@@ -880,120 +1267,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#full-6-dof-dynamics" class="md-nav__link">
+  <a href="#why-software-and-why-a-gpu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Full 6-DoF Dynamics
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rich-interference-library" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rich Interference Library
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#physics-based-channel" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Physics-Based Channel
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#python-native-extensible" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Python-Native &amp; Extensible
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#production-monitoring" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Production Monitoring
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#future-proof-scalability" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Future-Proof Scalability
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-start-60-seconds-to-signals" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Quick Start: 60 Seconds to Signals
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture-at-a-glance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Architecture at a Glance
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-this-matters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why This Matters
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#o1-frame-processing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        O(1) Frame Processing
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#pocketsdr-validated" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PocketSDR-Validated ✅
+        Why software, and why a GPU
       
     </span>
   </a>
@@ -1020,148 +1297,146 @@
 
 
 <div class="hero">
-<h1 id="gnss-testbed-simulator">GNSS Testbed Simulator<a class="headerlink" href="#gnss-testbed-simulator" title="Permanent link">&para;</a></h1>
-<p class="subtitle">
-A GPU-accelerated, Python-based GNSS signal simulation engine.<br>
-High-fidelity. Multi-constellation. Multi-band. Multi-element.
-</p>
+<h1 id="gnss-signals-generated-on-a-gpu">GNSS signals, generated <span class="accent">on a GPU</span><a class="headerlink" href="#gnss-signals-generated-on-a-gpu" title="Permanent link">&para;</a></h1>
+<p>A software GNSS simulator for receiver and anti-jam development. It renders phase-coherent
+baseband IQ for every satellite, every band and every antenna element, with jammers in
+the same scene, and writes files that any software or hardware receiver can use.</p>
+<p><a class="md-button md-button--primary" href="getting-started/">Get started</a>
+<a class="md-button" href="deploy/">Deploy a server</a>
+<a class="md-button" href="architecture/">How it works</a></p>
+<div class="chips">
+<span>GPS L1 C/A</span><span>GPS L2C</span><span>GPS L5</span><span>Galileo E1</span>
+<span>BeiDou B1I</span><span>BeiDou B1C</span><span>GLONASS L1</span><span>GLONASS L2</span>
 </div>
+</div>
+<div class="stats">
+<div><strong>8 signals</strong><span>across GPS, Galileo, BeiDou and GLONASS, multi-band in one run</span></div>
+<div><strong>1–16 elements</strong><span>per antenna array, each with its own lever arm, attitude and pattern</span></div>
+<div><strong>&lt; 0.001 samples</strong><span>measured code timing error, at integer and fractional sample rates</span></div>
+<div><strong>Real time</strong><span>for a 4-element dual-band CRPA scenario on one RTX 5090</span></div>
+</div>
+<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">&para;</a></h2>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m11.62 1 5.66 5.67-2.12 2.12-2.12-2.12-1.42 1.42 2.33 2.32-1.16 1.17.45.46a2.5 2.5 0 0 1 2.83.5l-3.53 3.53a2.5 2.5 0 0 1-.5-2.83l-.46-.45-1.17 1.16-2.32-2.33-1.42 1.42 2.12 2.12-2.12 2.12L1 11.62 3.14 9.5l2.12 2.12 1.41-1.41-2.83-2.83c-.78-.78-.78-2.05 0-2.83l.71-.71c.78-.78 2.05-.78 2.83 0l2.83 2.83 1.41-1.41L9.5 3.14zM18 14a4 4 0 0 1-4 4v-2a2 2 0 0 0 2-2zm4 0a8 8 0 0 1-8 8v-2a6 6 0 0 0 6-6z"/></svg></span> <strong>Multi-constellation, multi-band</strong></p>
 <hr />
-<div class="feature-grid">
-<div class="feature-card">
-<div class="icon">⚡</div>
-<h3 id="gpu-accelerated">GPU-Accelerated<a class="headerlink" href="#gpu-accelerated" title="Permanent link">&para;</a></h3>
-<p>Fused CUDA kernels map the entire multi-band antenna array across thousands of parallel execution threads. Frame generation runs in <strong>O(1)</strong> time — executing with uncompromising, constant performance independent of total simulation duration.</p>
-</div>
-<div class="feature-card">
-<div class="icon">🛰️</div>
-<h3 id="multi-constellation-multi-band">Multi-Constellation &amp; Multi-Band<a class="headerlink" href="#multi-constellation-multi-band" title="Permanent link">&para;</a></h3>
-<p>Simultaneously generate <strong>GPS L1 C/A</strong>, <strong>GPS L2C</strong>, and <strong>Galileo E1 (CBOC)</strong> signals from all visible satellites. GPS L5, BeiDou, and GLONASS support planned.</p>
-</div>
-<div class="feature-card">
-<div class="icon">📡</div>
-<h3 id="antenna-array-simulation">Antenna Array Simulation<a class="headerlink" href="#antenna-array-simulation" title="Permanent link">&para;</a></h3>
-<p>Arbitrary <strong>M-element antenna arrays</strong> with per-element lever arms, orientations, and radiation patterns. Built for <strong>CRPA</strong> and adaptive null-steering research.</p>
-</div>
-<div class="feature-card">
-<div class="icon">🎯</div>
-<h3 id="full-6-dof-dynamics">Full 6-DoF Dynamics<a class="headerlink" href="#full-6-dof-dynamics" title="Permanent link">&para;</a></h3>
-<p>Polynomial trajectory model (position + velocity + acceleration + jerk) for both translational and rotational motion. Receiver, jammers, and spoofers all support full kinematics.</p>
-</div>
-<div class="feature-card">
-<div class="icon">🔴</div>
-<h3 id="rich-interference-library">Rich Interference Library<a class="headerlink" href="#rich-interference-library" title="Permanent link">&para;</a></h3>
-<p>Built-in jammer types: <strong>CW</strong>, <strong>Triangle FM</strong>, <strong>BPSK</strong>, <strong>Chirp</strong>, and <strong>Broadband Noise</strong>. Each with independent trajectory, power, frequency, and antenna pattern.</p>
-</div>
-<div class="feature-card">
-<div class="icon">🌍</div>
-<h3 id="physics-based-channel">Physics-Based Channel<a class="headerlink" href="#physics-based-channel" title="Permanent link">&para;</a></h3>
-<p><strong>Saastamoinen</strong> tropospheric model + <strong>Klobuchar</strong> ionospheric model. Polyphase fractional-delay resampling with sub-sample accuracy. Dual delay paths (code vs. carrier) for realistic iono dispersion.</p>
-</div>
-<div class="feature-card">
-<div class="icon">🐍</div>
-<h3 id="python-native-extensible">Python-Native &amp; Extensible<a class="headerlink" href="#python-native-extensible" title="Permanent link">&para;</a></h3>
-<p>Built entirely in Python with CuPy/CUDA acceleration. Adding a new constellation, signal type, or jammer takes hours — not months. Configuration-driven via clean YAML files.</p>
-</div>
-<div class="feature-card">
-<div class="icon">📊</div>
-<h3 id="production-monitoring">Production Monitoring<a class="headerlink" href="#production-monitoring" title="Permanent link">&para;</a></h3>
-<p>Real-time <strong>Prometheus</strong> metrics for frame generation time, throughput, and GPU utilization. <strong>Grafana</strong> dashboards for live performance visualization during simulation runs.</p>
-</div>
-<div class="feature-card">
-<div class="icon">📈</div>
-<h3 id="future-proof-scalability">Future-Proof Scalability<a class="headerlink" href="#future-proof-scalability" title="Permanent link">&para;</a></h3>
-<p>Built for the extreme edge of Electronic Warfare. Exhibiting powerful <strong>sub-linear geometric scaling</strong>, the engine naturally spans from single-GPU workstations to distributed DGX supercomputers for massive, real-time 16-element arrays.</p>
-</div>
-</div>
+<p>All visible satellites from a RINEX broadcast file, on every enabled band at once.
+Bands that share a carrier, such as GPS L1 and Galileo E1, are summed into one stream.</p>
+</li>
+<li>
+<p><span class="twemoji lg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7.5c.69 0 1.27.23 1.76.7s.74 1.07.74 1.8q0 1.575-1.5 2.28V21h-2v-8.72Q9.5 11.575 9.5 10c0-.73.26-1.33.74-1.8s1.07-.7 1.76-.7m4.69-2.2c1.25 1.25 1.92 2.81 2.01 4.7 0 1.8-.67 3.38-2.01 4.72L15.5 13.5c1-.91 1.5-2.08 1.5-3.5 0-1.33-.5-2.5-1.5-3.5zM6.09 4.08C4.5 5.67 3.7 7.64 3.7 10s.8 4.3 2.39 5.89l-1.17 1.22C3 15.08 2 12.7 2 10s1-5.06 2.92-7.09zm12.99-1.17C21 4.94 22 7.3 22 10c0 2.8-1 5.17-2.92 7.11l-1.17-1.22C19.5 14.3 20.3 12.33 20.3 10s-.8-4.33-2.39-5.92zM7.31 5.3 8.5 6.5C7.5 7.42 7 8.58 7 10c0 1.33.5 2.5 1.5 3.5l-1.19 1.22C5.97 13.38 5.3 11.8 5.3 10s.67-3.36 2.01-4.7"/></svg></span> <strong>Antenna arrays</strong></p>
 <hr />
-<h2 id="quick-start-60-seconds-to-signals">Quick Start: 60 Seconds to Signals<a class="headerlink" href="#quick-start-60-seconds-to-signals" title="Permanent link">&para;</a></h2>
-<p>Generate complex, multi-band GNSS environments with two simple commands.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 1. Start the GPU generation engine (Server)</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>python<span class="w"> </span>-m<span class="w"> </span>gnss_sim.framework.server<span class="w"> </span>--params<span class="w"> </span>config/simulator_params.yaml
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 2. In a separate terminal, consume the signals and write to disk (Client)</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>python<span class="w"> </span>experiments/rcv_pocketsdr_phase5.py<span class="w"> </span>--scenario<span class="w"> </span>config/scenario_config.yaml
-</code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">Fully Extensible</p>
-<p>Don't want to use the default Python client? You can write a custom C++ or Python script to consume the <code>ZeroMQ</code> output stream and pipe the raw IQ data directly into your own Software-Defined Radio (SDR).</p>
-</div>
+<p><em>M</em> independent, phase-coherent IQ streams. Each element has a body-frame lever arm, an
+orientation and a radiation pattern (built-in polarisations or CST exports). Built for
+CRPA and null-steering work.</p>
+</li>
+<li>
+<p><span class="twemoji lg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5c4.97 0 9 2.69 9 6 0 1.68-1.04 3.2-2.71 4.29 1.07-.87 1.71-1.97 1.71-3.16C20 9.29 16.42 7 12 7v3L8 6l4-4zm0 14c-4.97 0-9-2.69-9-6 0-1.68 1.04-3.2 2.71-4.29C4.64 9.58 4 10.68 4 11.88 4 14.71 7.58 17 12 17v-3l4 4-4 4z"/></svg></span> <strong>6-DoF dynamics</strong></p>
 <hr />
-<h2 id="architecture-at-a-glance">Architecture at a Glance<a class="headerlink" href="#architecture-at-a-glance" title="Permanent link">&para;</a></h2>
-<p>The simulator uses a <strong>client-server architecture</strong> over ZeroMQ, fully decoupling signal generation from signal consumption.</p>
-<pre class="mermaid"><code>graph LR
-    subgraph Client["🖥️ Client (Tester)"]
-        A[Configure Scenario] --&gt; B[Request Frames]
-        B --&gt; C[Receive IQ Data]
-        C --&gt; D[Add Noise / Quantize]
-        D --&gt; E[Write to File]
-        E --&gt; F[Feed Your Receiver]
-    end
+<p>The receiver follows a piecewise-cubic trajectory: position, velocity, acceleration
+and jerk, plus the same for attitude, so each element's lever arm moves with it. A
+static receiver is a single latitude, longitude and altitude.</p>
+</li>
+<li>
+<p><span class="twemoji lg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 3v13.18l3 3V3zM4.28 5 3 6.27 10.73 14H8v7h3v-6.73l2 2V21h3v-1.73L19.73 23 21 21.72zM13 9v2.18l3 3V9zM3 18v3h3v-3z"/></svg></span> <strong>Interference in the same scene</strong></p>
+<hr />
+<p>CW, triangle-FM and BPSK jammers, each with its own location, transmit power, carrier
+and antenna pattern. Path loss is applied, and each jammer is delayed per element, so
+the array sees where every one of them is.</p>
+</li>
+<li>
+<p><span class="twemoji lg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.9 17.39c-.26-.8-1.01-1.39-1.9-1.39h-1v-3a1 1 0 0 0-1-1H8v-2h2a1 1 0 0 0 1-1V7h2a2 2 0 0 0 2-2v-.41a7.984 7.984 0 0 1 2.9 12.8M11 19.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.22.21-1.79L9 15v1a2 2 0 0 0 2 2m1-16A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg></span> <strong>Physics-based channel</strong></p>
+<hr />
+<p>Light-time solution with Sagnac correction, broadcast satellite clocks, Saastamoinen
+troposphere with the Niell mapping function, and Klobuchar ionosphere scaled by 1/f²
+per band.</p>
+</li>
+<li>
+<p><span class="twemoji lg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 2v2.07A8 8 0 0 0 4.07 11H2v2h2.07A8 8 0 0 0 11 19.93V22h2v-2.07A8 8 0 0 0 19.93 13H22v-2h-2.07A8 8 0 0 0 13 4.07V2m-2 4.08V8h2V6.09c2.5.41 4.5 2.41 4.92 4.91H16v2h1.91c-.41 2.5-2.41 4.5-4.91 4.92V16h-2v1.91C8.5 17.5 6.5 15.5 6.08 13H8v-2H6.09C6.5 8.5 8.5 6.5 11 6.08M12 11a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <strong>Exact code timing</strong></p>
+<hr />
+<p>Every signal is band-limited to the sample rate <em>before</em> it is delayed. Code timing is
+exact at any rate, integer or fractional, and was confirmed by an independent
+signal analyser.</p>
+</li>
+<li>
+<p><span class="twemoji lg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 19v1h18v2H2V2h2v15c3 0 6-2 8.1-5.6 3-5 6.3-7.4 9.9-7.4v2c-2.8 0-5.5 2.1-8.1 6.5C11.3 16.6 7.7 19 4 19"/></svg></span> <strong>Ground truth on request</strong></p>
+<hr />
+<p>The server can return the range, range rate, Doppler, delay and look angles that it
+actually generated for a satellite, so you can score a receiver against it.</p>
+</li>
+<li>
+<p><span class="twemoji lg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2h7v5h5v11H6zm2 8v2h8v-2zm0 4v2h5v-2z"/></svg></span> <strong>Real navigation data</strong></p>
+<hr />
+<p>Each signal carries its own message (LNAV, CNAV, I/NAV, B-CNAV1, D1/D2, GLONASS strings),
+encoded from the broadcast ephemeris with the ICD's parity, CRC and FEC, so receivers can
+decode it.</p>
+</li>
+<li>
+<p><span class="twemoji lg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 1c-1.11 0-2 .89-2 2v4c0 1.11.89 2 2 2H1v2h12V9h-3c1.11 0 2-.89 2-2V3c0-1.11-.89-2-2-2zm0 2h6v4H4zM3 13v7h7v-2H5v-5zm11 0c-1.11 0-2 .89-2 2v4c0 1.11.89 2 2 2h-3v2h12v-2h-3c1.11 0 2-.89 2-2v-4c0-1.11-.89-2-2-2zm0 2h6v4h-6z"/></svg></span> <strong>Client–server</strong></p>
+<hr />
+<p>A GPU server generates the signal. A lightweight client (it needs only <code>numpy</code> and
+<code>pyzmq</code>) records it, on the same machine or across a network.</p>
+</li>
+</ul>
+</div>
+<h2 id="how-a-run-works">How a run works<a class="headerlink" href="#how-a-run-works" title="Permanent link">&para;</a></h2>
+<div class="flow">
+<div class="flow-step"><span class="flow-who">You</span><strong>Scenario YAML</strong><span>Time, place, signals, array, jammers</span></div>
+<div class="flow-step"><span class="flow-who">Client</span><strong>INIT, then GENERATE</strong><span>Over ZeroMQ, port 5555, in batches of frames</span></div>
+<div class="flow-step flow-gpu"><span class="flow-who">GPU server</span><strong>Geometry → shape → delay → sum</strong><span>Every satellite and jammer, per band and element</span></div>
+<div class="flow-step"><span class="flow-who">Client</span><strong>Noise · quantise · write</strong><span>One <code>.bin</code> per band and element</span></div>
+<div class="flow-step"><span class="flow-who">You</span><strong>Your receiver</strong><span>Software, hardware, or your own algorithm</span></div>
+</div>
 
-    subgraph Server["⚙️ Server (GPU Engine)"]
-        G[Load Config &amp; Ephemerides] --&gt; H[Compute Geometry]
-        H --&gt; I[Generate Signals on GPU]
-        I --&gt; J[Transfer to Host]
-    end
-
-    B -- "ZMQ REQ/REP" --&gt; G
-    J -- "Multi-part Binary" --&gt; C</code></pre>
-<p>The <strong>server</strong> focuses exclusively on signal generation: geometry computation, GPU kernel dispatch, and high-precision baseband rendering. It outputs full-precision complex64 IQ samples — no quantization, no noise.</p>
-<p>The <strong>client</strong> adds thermal noise, applies AGC, quantizes, and writes output files that can be consumed by <strong>any software or hardware GNSS receiver</strong>.</p>
+<p>The <strong>server</strong> does only signal generation and returns full-precision <code>complex64</code> samples, with no
+noise and no quantisation. The <strong>client</strong> adds thermal noise, quantises if asked, and writes one
+file per band and element. <a href="architecture/">More on the architecture →</a></p>
+<h2 id="pick-your-path">Pick your path<a class="headerlink" href="#pick-your-path" title="Permanent link">&para;</a></h2>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.13 22.19-1.63-3.83c1.57-.58 3.04-1.36 4.4-2.27zM5.64 12.5l-3.83-1.63 6.1-2.77C7 9.46 6.22 10.93 5.64 12.5M21.61 2.39S16.66.269 11 5.93c-2.19 2.19-3.5 4.6-4.35 6.71-.28.75-.09 1.57.46 2.13l2.13 2.12c.55.56 1.37.74 2.12.46A19.1 19.1 0 0 0 18.07 13c5.66-5.66 3.54-10.61 3.54-10.61m-7.07 7.07c-.78-.78-.78-2.05 0-2.83s2.05-.78 2.83 0c.77.78.78 2.05 0 2.83s-2.05.78-2.83 0m-5.66 7.07-1.41-1.41zM6.24 22l3.64-3.64c-.34-.09-.67-.24-.97-.45L4.83 22zM2 22h1.41l4.77-4.76-1.42-1.41L2 20.59zm0-2.83 4.09-4.08c-.21-.3-.36-.62-.45-.97L2 17.76z"/></svg></span> <strong>I have a GPU workstation</strong></p>
 <hr />
-<h2 id="why-this-matters">Why This Matters<a class="headerlink" href="#why-this-matters" title="Permanent link">&para;</a></h2>
+<p>Install, fetch one navigation file, and record your first signal on a single machine.</p>
+<p><a href="getting-started/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Quickstart</a></p>
+</li>
+<li>
+<p><span class="twemoji lg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 19h1a1 1 0 0 1 1 1h7v2h-7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1H2v-2h7a1 1 0 0 1 1-1h1v-2H4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-7zM4 3h16a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1m5 4h1V5H9zm0 8h1v-2H9zM5 5v2h2V5zm0 8v2h2v-2z"/></svg></span> <strong>I'm setting up a server for a team</strong></p>
+<hr />
+<p>One GPU host, many recording clients, optional dashboards. Includes air-gapped networks.</p>
+<p><a href="deploy/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Deploy</a></p>
+</li>
+<li>
+<p><span class="twemoji lg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.11 0-2 .89-2 2v16a2 2 0 0 0 2 2h6.68a7 7 0 0 1-.68-3 7 7 0 0 1 7-7 7 7 0 0 1 1 .08V8l-6-6zm7 1.5L18.5 9H13zM18 14a.26.26 0 0 0-.26.21l-.19 1.32c-.3.13-.59.29-.85.47l-1.24-.5c-.11 0-.24 0-.31.13l-1 1.73c-.06.11-.04.24.06.32l1.06.82a4.2 4.2 0 0 0 0 1l-1.06.82a.26.26 0 0 0-.06.32l1 1.73c.06.13.19.13.31.13l1.24-.5c.26.18.54.35.85.47l.19 1.32c.02.12.12.21.26.21h2c.11 0 .22-.09.24-.21l.19-1.32c.3-.13.57-.29.84-.47l1.23.5c.13 0 .26 0 .33-.13l1-1.73a.26.26 0 0 0-.06-.32l-1.07-.82c.02-.17.04-.33.04-.5s-.01-.33-.04-.5l1.06-.82a.26.26 0 0 0 .06-.32l-1-1.73c-.06-.13-.19-.13-.32-.13l-1.23.5c-.27-.18-.54-.35-.85-.47l-.19-1.32A.236.236 0 0 0 20 14zm1 3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5c-.84 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5"/></svg></span> <strong>I need to write a scenario</strong></p>
+<hr />
+<p>Time, place, constellations, antenna array and jammers, all in one YAML file.</p>
+<p><a href="user-guide/configuration/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Configuration</a></p>
+</li>
+</ul>
+</div>
+<h2 id="why-software-and-why-a-gpu">Why software, and why a GPU<a class="headerlink" href="#why-software-and-why-a-gpu" title="Permanent link">&para;</a></h2>
 <div class="cost-compare">
 <div class="cost-box ours">
 <div class="price">&lt; $65K</div>
-<div class="label">This Architecture<br>GPU Server + Open-Source Stack</div>
+<div class="label">This approach: a GPU server and an open-source stack</div>
 </div>
-<div class="cost-box theirs">
+<div class="cost-box">
 <div class="price">&gt; $1M</div>
-<div class="label">Commercial Real-Time Simulators<br>Proprietary Hardware + License Fees</div>
+<div class="label">Commercial multi-channel, multi-band, phase-coherent RF simulators</div>
 </div>
 </div>
-<p>Traditional GNSS simulators require specialized real-time hardware that costs over <strong>$1,000,000</strong> for multi-channel, multi-band, phase-coherent simulation. This architecture achieves equivalent fidelity using commodity GPU servers and a Python-based software engine — at a fraction of the cost.</p>
-<p>The key insight: <strong>for 95% of verification tasks, real-time simulation is unnecessary.</strong> By accepting a slowdown factor (e.g., ×10–×20), we trade "cheap" compute time for "expensive" RF capability. A scenario that runs overnight delivers $1M worth of simulation fidelity on $65K worth of hardware.</p>
-<hr />
-<h2 id="o1-frame-processing">O(1) Frame Processing<a class="headerlink" href="#o1-frame-processing" title="Permanent link">&para;</a></h2>
-<p>The simulator processes each frame in <strong>constant time</strong>, regardless of whether the simulation runs for 1 second or 1 hour.</p>
-<table>
-<thead>
-<tr>
-<th>What Scales</th>
-<th>What Does NOT Scale</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Total wall-clock time (linear with duration)</td>
-<td>Per-frame GPU processing time</td>
-</tr>
-<tr>
-<td>Total output data volume</td>
-<td>Memory usage per frame</td>
-</tr>
-<tr>
-<td></td>
-<td>Kernel launch overhead</td>
-</tr>
-</tbody>
-</table>
-<p>This means <strong>doubling the simulation duration exactly doubles the wall-clock time</strong> — no hidden overhead, no memory growth, no degradation. The <a href="benchmarks/">performance benchmarks</a> section provides measured per-frame timing data across various scenarios and GPU tiers.</p>
-<hr />
-<h2 id="pocketsdr-validated">PocketSDR-Validated ✅<a class="headerlink" href="#pocketsdr-validated" title="Permanent link">&para;</a></h2>
-<p>The simulator's signal quality is validated end-to-end against <strong>PocketSDR</strong>, an open-source multi-band GNSS software receiver. This means:</p>
-<ol>
-<li><strong>Simulator generates</strong> multi-band IQ data (complex64, full precision)</li>
-<li><strong>Quantized output</strong> is fed directly to PocketSDR</li>
-<li><strong>PocketSDR successfully acquires and tracks</strong> all simulated satellites</li>
-<li><strong>CN0, Doppler, and code phase</strong> match expected values</li>
-</ol>
-<p>This "PocketSDR-approved" stamp ensures that the simulator's output is not just mathematically correct — it is <strong>receivable and decodable by real GNSS processing software</strong>.</p>
-<div class="admonition tip">
-<p class="admonition-title">Your receiver, your choice</p>
-<p>PocketSDR is used internally for validation. You are free to use the simulator's output with <strong>any</strong> receiver — software or hardware. PocketSDR installation is <strong>not required</strong> to use the simulator.</p>
+<p>Most verification work doesn't need real time. Accepting a slowdown (×10 or ×20) swaps expensive
+RF hardware for cheap compute time: a scenario that runs overnight delivers the same signal
+fidelity. The cost of each frame doesn't depend on how long the scenario is, and memory doesn't
+grow with it, so an hour-long run costs exactly 60 times a one-minute run. Where real time
+matters, small arrays already get there on one GPU. <a href="benchmarks/">See the measurements →</a></p>
+<div class="admonition note">
+<p class="admonition-title">Not there yet</p>
+<p>Jammers are stationary: moving emitters are specified but not wired up. Noise and chirp
+jammers are accepted in emitter files but not yet rendered. Spoofers, pulsed jammers and
+multipath are specified but not implemented. Multi-GPU is designed but not built.
+<a href="user-guide/signals/">Signals &amp; interference</a> lists exactly what is supported.</p>
 </div>
 
 
@@ -1200,9 +1475,39 @@ High-fidelity. Multi-constellation. Multi-band. Multi-element.
       
         <footer class="md-footer">
   
+    
+      
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+        
+          
+          <a href="getting-started/" class="md-footer__link md-footer__link--next" aria-label="Next: Quickstart">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Quickstart
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      GNSS Testbed Simulator · v3.5
+    </div>
   
   
 </div>
@@ -1220,12 +1525,14 @@ High-fidelity. Multi-constellation. Multi-band. Multi-element.
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "content.code.copy", "content.tabs.link", "toc.follow"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.instant", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="assets/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
       
     
   </body>

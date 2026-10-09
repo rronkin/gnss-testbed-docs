@@ -6,12 +6,14 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="GPU-Accelerated GNSS Signal Simulation Engine — High-Fidelity, Multi-Constellation, Multi-Band">
+        <meta name="description" content="GPU-accelerated GNSS signal simulator — multi-constellation, multi-band, multi-element, with interference.">
       
       
       
+        <link rel="canonical" href="https://rronkin.github.io/gnss-testbed-docs/user-guide/inputs/">
       
-        <link rel="prev" href="../configuration/">
+      
+        <link rel="prev" href="../signals/">
       
       
         <link rel="next" href="../outputs/">
@@ -20,12 +22,12 @@
         
       
       
-      <link rel="icon" href="../..">
+      <link rel="icon" href="../../assets/logo.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Input Formats - GNSS Testbed Simulator</title>
+        <title>Input files - GNSS Testbed Simulator</title>
       
     
     
@@ -69,7 +71,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="cyan">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -78,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#input-formats" class="md-skip">
+        <a href="#input-files" class="md-skip">
           Skip to content
         </a>
       
@@ -90,12 +92,13 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="GNSS Testbed Simulator" class="md-header__button md-logo" aria-label="GNSS Testbed Simulator" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m11.62 1 5.66 5.67-2.12 2.12-2.12-2.12-1.42 1.42 2.33 2.32-1.16 1.17.45.46a2.5 2.5 0 0 1 2.83.5l-3.53 3.53a2.5 2.5 0 0 1-.5-2.83l-.46-.45-1.17 1.16-2.32-2.33-1.42 1.42 2.12 2.12-2.12 2.12L1 11.62 3.14 9.5l2.12 2.12 1.41-1.41-2.83-2.83c-.78-.78-.78-2.05 0-2.83l.71-.71c.78-.78 2.05-.78 2.83 0l2.83 2.83 1.41-1.41L9.5 3.14zM18 14a4 4 0 0 1-4 4v-2a2 2 0 0 0 2-2zm4 0a8 8 0 0 1-8 8v-2a6 6 0 0 0 6-6z"/></svg>
+  <img src="../../assets/logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -112,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Input Formats
+              Input files
             
           </span>
         </div>
@@ -125,20 +128,20 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
   
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
   
@@ -175,6 +178,8 @@
         </button>
       </nav>
       
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
@@ -193,14 +198,8 @@
     
   </nav>
   
-</header>
     
-    <div class="md-container" data-md-component="container">
       
-      
-        
-          
-            
 <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
@@ -229,17 +228,42 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../../architecture/" class="md-tabs__link">
-        
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/" class="md-tabs__link">
+          
   
   
     
   
-  Architecture
+  Get started
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../deploy/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Deploy
+
+        </a>
+      </li>
+    
   
 
       
@@ -253,11 +277,35 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../getting-started/" class="md-tabs__link">
+        <a href="../configuration/" class="md-tabs__link">
           
   
   
-  User Guide
+    
+  
+  User guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../architecture/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  How it works
 
         </a>
       </li>
@@ -271,32 +319,13 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../examples/" class="md-tabs__link">
+      <a href="../../troubleshooting/" class="md-tabs__link">
         
   
   
     
   
-  Examples
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../benchmarks/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Performance
+  Troubleshooting
 
       </a>
     </li>
@@ -306,7 +335,13 @@
     </ul>
   </div>
 </nav>
-          
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
       
       <main class="md-main" data-md-component="main">
@@ -327,8 +362,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="GNSS Testbed Simulator" class="md-nav__button md-logo" aria-label="GNSS Testbed Simulator" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m11.62 1 5.66 5.67-2.12 2.12-2.12-2.12-1.42 1.42 2.33 2.32-1.16 1.17.45.46a2.5 2.5 0 0 1 2.83.5l-3.53 3.53a2.5 2.5 0 0 1-.5-2.83l-.46-.45-1.17 1.16-2.32-2.33-1.42 1.42 2.12 2.12-2.12 2.12L1 11.62 3.14 9.5l2.12 2.12 1.41-1.41-2.83-2.83c-.78-.78-.78-2.05 0-2.83l.71-.71c.78-.78 2.05-.78 2.83 0l2.83 2.83 1.41-1.41L9.5 3.14zM18 14a4 4 0 0 1-4 4v-2a2 2 0 0 0 2-2zm4 0a8 8 0 0 1-8 8v-2a6 6 0 0 0 6-6z"/></svg>
+  <img src="../../assets/logo.svg" alt="logo">
 
     </a>
     GNSS Testbed Simulator
@@ -369,15 +403,84 @@
   
   
   
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Get started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Get started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../architecture/" class="md-nav__link">
+      <a href="../../getting-started/installation/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Architecture
+    Installation
   
 
     
@@ -386,6 +489,208 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../deploy/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deploy
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deploy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPU server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recording client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/air-gapped/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Air-gapped networks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -399,6 +704,20 @@
   
   
     
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -415,17 +734,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
   <span class="md-ellipsis">
     
   
-    User Guide
+    User guide
   
 
     
@@ -436,12 +755,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
-    User Guide
+    User guide
   
 
           </label>
@@ -454,14 +773,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/" class="md-nav__link">
+      <a href="../configuration/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Getting Started
+    Configuration
   
 
     
@@ -482,14 +801,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuration/" class="md-nav__link">
+      <a href="../signals/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Configuration
+    Signals & interference
   
 
     
@@ -526,7 +845,7 @@
   <span class="md-ellipsis">
     
   
-    Input Formats
+    Input files
   
 
     
@@ -544,7 +863,7 @@
   <span class="md-ellipsis">
     
   
-    Input Formats
+    Input files
   
 
     
@@ -570,22 +889,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#receiver-trajectory-csv" class="md-nav__link">
+  <a href="#rinex-navigation-file" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Receiver Trajectory (CSV)
+        RINEX navigation file
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Receiver Trajectory (CSV)">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trajectory-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trajectory CSV
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#emitter-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Emitter CSV
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Emitter CSV">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#row-schema" class="md-nav__link">
+  <a href="#columns-for-every-emitter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Row Schema
+        Columns for every emitter
       
     </span>
   </a>
@@ -593,10 +934,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#polynomial-evaluation" class="md-nav__link">
+  <a href="#columns-by-type" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Polynomial Evaluation
+        Columns by type
       
     </span>
   </a>
@@ -614,27 +955,16 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#behaviors" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Behaviors
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#rinex-navigation-files" class="md-nav__link">
+  <a href="#antenna-patterns" class="md-nav__link">
     <span class="md-ellipsis">
       
-        RINEX Navigation Files
+        Antenna patterns
       
     </span>
   </a>
@@ -642,193 +972,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#jammer-emitter-file-csv" class="md-nav__link">
+  <a href="#conventions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Jammer / Emitter File (CSV)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Jammer / Emitter File (CSV)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#common-columns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Columns
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#geometry-stationary-lla" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Geometry — Stationary LLA
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#geometry-trajectory-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Geometry — Trajectory File
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#signal-columns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Signal Columns
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#emitter-types-type-specific-parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Emitter Types &amp; Type-Specific Parameters
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Emitter Types &amp; Type-Specific Parameters">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cw-continuous-wave" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CW — Continuous Wave
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fm-triangle-frequency-modulation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        FM — Triangle Frequency Modulation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bpsk-binary-phase-shift-keying" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        BPSK — Binary Phase-Shift Keying
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#chirp-linear-fm-sweep" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CHIRP — Linear FM Sweep
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#narrowband_noise-broadband_noise" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        NARROWBAND_NOISE / BROADBAND_NOISE
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-multi-jammer-scenario" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example — Multi-Jammer Scenario
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#antenna-array-yaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Antenna Array (YAML)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Antenna Array (YAML)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#coordinate-convention" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Coordinate Convention
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-4-element-square-array" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example — 4-Element Square Array
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#units-reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Units Reference
+        Conventions
       
     </span>
   </a>
@@ -858,7 +1005,214 @@
   <span class="md-ellipsis">
     
   
-    Output Formats
+    Output files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ground-truth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ground truth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How it works
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    How it works
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signal fidelity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
   
 
     
@@ -886,41 +1240,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/" class="md-nav__link">
+      <a href="../../troubleshooting/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Examples
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../benchmarks/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Performance
+    Troubleshooting
   
 
     
@@ -960,22 +1287,44 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#receiver-trajectory-csv" class="md-nav__link">
+  <a href="#rinex-navigation-file" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Receiver Trajectory (CSV)
+        RINEX navigation file
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Receiver Trajectory (CSV)">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trajectory-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trajectory CSV
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#emitter-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Emitter CSV
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Emitter CSV">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#row-schema" class="md-nav__link">
+  <a href="#columns-for-every-emitter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Row Schema
+        Columns for every emitter
       
     </span>
   </a>
@@ -983,10 +1332,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#polynomial-evaluation" class="md-nav__link">
+  <a href="#columns-by-type" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Polynomial Evaluation
+        Columns by type
       
     </span>
   </a>
@@ -1004,27 +1353,16 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#behaviors" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Behaviors
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#rinex-navigation-files" class="md-nav__link">
+  <a href="#antenna-patterns" class="md-nav__link">
     <span class="md-ellipsis">
       
-        RINEX Navigation Files
+        Antenna patterns
       
     </span>
   </a>
@@ -1032,193 +1370,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#jammer-emitter-file-csv" class="md-nav__link">
+  <a href="#conventions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Jammer / Emitter File (CSV)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Jammer / Emitter File (CSV)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#common-columns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Columns
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#geometry-stationary-lla" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Geometry — Stationary LLA
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#geometry-trajectory-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Geometry — Trajectory File
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#signal-columns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Signal Columns
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#emitter-types-type-specific-parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Emitter Types &amp; Type-Specific Parameters
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Emitter Types &amp; Type-Specific Parameters">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cw-continuous-wave" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CW — Continuous Wave
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fm-triangle-frequency-modulation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        FM — Triangle Frequency Modulation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bpsk-binary-phase-shift-keying" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        BPSK — Binary Phase-Shift Keying
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#chirp-linear-fm-sweep" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CHIRP — Linear FM Sweep
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#narrowband_noise-broadband_noise" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        NARROWBAND_NOISE / BROADBAND_NOISE
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-multi-jammer-scenario" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example — Multi-Jammer Scenario
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#antenna-array-yaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Antenna Array (YAML)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Antenna Array (YAML)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#coordinate-convention" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Coordinate Convention
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-4-element-square-array" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example — 4-Element Square Array
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#units-reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Units Reference
+        Conventions
       
     </span>
   </a>
@@ -1242,441 +1397,291 @@
 
 
 
-<h1 id="input-formats">Input Formats<a class="headerlink" href="#input-formats" title="Permanent link">&para;</a></h1>
-<p>This page documents all input file formats accepted by the simulator.</p>
-<hr />
-<h2 id="receiver-trajectory-csv">Receiver Trajectory (CSV)<a class="headerlink" href="#receiver-trajectory-csv" title="Permanent link">&para;</a></h2>
-<p>The receiver's 6-DoF motion is defined by a time-stepped polynomial trajectory table.</p>
-<p><strong>Referenced by:</strong> <code>scenario_config.yaml</code> → <code>scenario.receiver_trajectory</code></p>
-<h3 id="row-schema">Row Schema<a class="headerlink" href="#row-schema" title="Permanent link">&para;</a></h3>
-<p>Each row defines a time segment via a starting epoch and polynomial coefficients valid until the next row.</p>
+<h1 id="input-files">Input files<a class="headerlink" href="#input-files" title="Permanent link">&para;</a></h1>
+<p class="lead">Besides the two YAML files, a scenario can refer to a navigation file, a receiver
+trajectory, an emitter list and antenna patterns. All of them are read on the server.</p>
+
+<div class="admonition warning">
+<p class="admonition-title">Paths are resolved on the server</p>
+<p>Relative paths are resolved against the server's working directory, normally the project root.
+When recording remotely, put these files on the server first. See
+<a href="../../deploy/#what-lives-where">What lives where</a>.</p>
+</div>
+<h2 id="rinex-navigation-file">RINEX navigation file<a class="headerlink" href="#rinex-navigation-file" title="Permanent link">&para;</a></h2>
+<p>Standard RINEX 2 or 3 broadcast navigation, mixed or single-constellation, such as the IGS daily
+<code>BRDC00IGS_R_YYYYDDD0000_01D_MN.rnx</code>. It supplies:</p>
+<ul>
+<li>orbits and clock corrections for GPS, Galileo, BeiDou and GLONASS</li>
+<li>the navigation message content each signal broadcasts</li>
+<li>Klobuchar ionosphere coefficients, from the header</li>
+</ul>
+<p>Set <code>satellites.rinex_nav_file</code> to a path, or to <code>null</code> to let the server search <code>data/rinex/</code>,
+then <code>tests/data/</code>, for the scenario date. If the date has no file, it tries up to four days
+earlier. <code>.gz</code> files are decompressed automatically.</p>
+<p>The server <strong>never downloads</strong> a file. If none is found, <code>INIT</code> fails and names the file to fetch:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>RINEX navigation file not found for date 2026-01-15. Please download from:
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>https://igs.bkg.bund.de/root_ftp/IGS/BRDC/2026/015/BRDC00IGS_R_20260150000_01D_MN.rnx.gz
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Then upload it using: deploy_client.py --upload-rinex &lt;file&gt;
+</span></code></pre></div>
+<p><code>deploy/server/prepare_rinex.py --date YYYY-MM-DD</code> does the download for you.</p>
+<h2 id="trajectory-csv">Trajectory CSV<a class="headerlink" href="#trajectory-csv" title="Permanent link">&para;</a></h2>
+<p>Receiver motion in six degrees of freedom, as a table of polynomial segments. Each row starts a
+segment that lasts until the next row's <code>t_start</code>. Set it with <code>scenario.receiver_trajectory</code>.</p>
 <table>
 <thead>
 <tr>
-<th>#</th>
-<th>Column</th>
-<th>Type</th>
+<th>Columns</th>
 <th>Unit</th>
-<th>Description</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1</td>
 <td><code>t_start</code></td>
-<td>float64</td>
 <td>s</td>
-<td>Segment start time (seconds since simulation epoch)</td>
+<td>Segment start, from the scenario start</td>
 </tr>
 <tr>
-<td>2–4</td>
 <td><code>x</code>, <code>y</code>, <code>z</code></td>
-<td>float64</td>
 <td>m</td>
 <td>ECEF position</td>
 </tr>
 <tr>
-<td>5–7</td>
 <td><code>vx</code>, <code>vy</code>, <code>vz</code></td>
-<td>float64</td>
 <td>m/s</td>
 <td>ECEF velocity</td>
 </tr>
 <tr>
-<td>8–10</td>
 <td><code>ax</code>, <code>ay</code>, <code>az</code></td>
-<td>float64</td>
 <td>m/s²</td>
 <td>ECEF acceleration</td>
 </tr>
 <tr>
-<td>11–13</td>
 <td><code>jx</code>, <code>jy</code>, <code>jz</code></td>
-<td>float64</td>
 <td>m/s³</td>
 <td>ECEF jerk</td>
 </tr>
 <tr>
-<td>14–16</td>
 <td><code>yaw</code>, <code>pitch</code>, <code>roll</code></td>
-<td>float64</td>
 <td>°</td>
-<td>Euler angles (Z-Y-X)</td>
+<td>Attitude (Z-Y-X)</td>
 </tr>
 <tr>
-<td>17–19</td>
 <td><code>yaw_rate</code>, <code>pitch_rate</code>, <code>roll_rate</code></td>
-<td>float64</td>
 <td>°/s</td>
-<td>Angular velocity</td>
+<td></td>
 </tr>
 <tr>
-<td>20–22</td>
 <td><code>yaw_accel</code>, <code>pitch_accel</code>, <code>roll_accel</code></td>
-<td>float64</td>
 <td>°/s²</td>
-<td>Angular acceleration</td>
+<td></td>
 </tr>
 <tr>
-<td>23–25</td>
 <td><code>yaw_jerk</code>, <code>pitch_jerk</code>, <code>roll_jerk</code></td>
-<td>float64</td>
 <td>°/s³</td>
-<td>Angular jerk</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<h3 id="polynomial-evaluation">Polynomial Evaluation<a class="headerlink" href="#polynomial-evaluation" title="Permanent link">&para;</a></h3>
-<p>Within each segment starting at time <span class="arithmatex">\(t_0\)</span>:</p>
+<p>Within a segment that starts at <span class="arithmatex">\(t_0\)</span>, each axis evolves as</p>
 <div class="arithmatex">\[p(t) = p_0 + v_0\,(t - t_0) + \tfrac{1}{2}\,a_0\,(t - t_0)^2 + \tfrac{1}{6}\,j_0\,(t - t_0)^3\]</div>
-<p>The same formula applies to each rotational axis independently.</p>
-<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
-<div class="highlight"><span class="filename">trajectory.csv</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>t_start,x,y,z,vx,vy,vz,ax,ay,az,jx,jy,jz,yaw,pitch,roll,yaw_rate,pitch_rate,roll_rate,yaw_accel,pitch_accel,roll_accel,yaw_jerk,pitch_jerk,roll_jerk
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>0.0,4488330.0,443500.0,4519850.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>10.0,4488330.0,443500.0,4519850.0,5.0,0,0,0,0,0,0,0,0,0,0,0,1.0,0,0,0,0,0,0,0,0
-</code></pre></div>
-<h3 id="behaviors">Behaviors<a class="headerlink" href="#behaviors" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Stationary receiver</strong>: A single row with all derivatives set to zero.</li>
-<li><strong>End-of-data</strong>: If the simulation exceeds the last row's <code>t_start</code>, the receiver continues at <strong>constant velocity</strong> (acceleration and jerk forced to zero).</li>
-<li><strong>Continuity</strong>: The simulator validates segment boundaries at initialization. Discontinuities exceeding the configured tolerance raise a fatal error.</li>
+<li><strong>One row</strong> is a stationary receiver, or one moving at constant rates.</li>
+<li><strong>Past the last row</strong>, acceleration and jerk drop to zero and the receiver carries on at
+  constant velocity.</li>
+<li><strong>Discontinuities</strong> between segments larger than <code>continuity_tolerance_m</code> / <code>_deg</code> are a fatal
+  error at <code>INIT</code>. Make the trajectory continuous before you run it.</li>
 </ul>
-<hr />
-<h2 id="rinex-navigation-files">RINEX Navigation Files<a class="headerlink" href="#rinex-navigation-files" title="Permanent link">&para;</a></h2>
-<p>Standard RINEX v2.x / v3.x navigation files providing broadcast satellite ephemerides.</p>
-<p><strong>Referenced by:</strong> <code>scenario_config.yaml</code> → <code>scenario.satellites.rinex_nav_file</code></p>
-<ul>
-<li>If the path is set to <code>null</code>, the server <strong>automatically downloads</strong> the appropriate RINEX file from CDDIS archives based on the simulation start time.</li>
-<li>The ephemeris manager parses the RINEX file and supports both <strong>GPS</strong> ('G') and <strong>Galileo</strong> ('E') satellites.</li>
-<li>Ionospheric correction parameters (Klobuchar α/β coefficients) are also extracted from the RINEX header.</li>
-</ul>
-<hr />
-<h2 id="jammer-emitter-file-csv">Jammer / Emitter File (CSV)<a class="headerlink" href="#jammer-emitter-file-csv" title="Permanent link">&para;</a></h2>
-<p>Non-GNSS emitters (jammers, spoofers) are defined in a CSV file.</p>
-<p><strong>Referenced by:</strong> <code>scenario_config.yaml</code> → <code>scenario.interference.emitter_file</code></p>
-<h3 id="common-columns">Common Columns<a class="headerlink" href="#common-columns" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><span class="filename">trajectories/accelerate_and_turn.csv</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>t_start,x,y,z,vx,vy,vz,ax,ay,az,jx,jy,jz,yaw,pitch,roll,yaw_rate,pitch_rate,roll_rate,yaw_accel,pitch_accel,roll_accel,yaw_jerk,pitch_jerk,roll_jerk
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>0.0,4488330.0,443500.0,4519850.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>10.0,4488330.0,443500.0,4519850.0,5.0,0,0,0,0,0,0,0,0,0,0,0,1.0,0,0,0,0,0,0,0,0
+</span></code></pre></div>
+<h2 id="emitter-csv">Emitter CSV<a class="headerlink" href="#emitter-csv" title="Permanent link">&para;</a></h2>
+<p>One row per jammer. Set it with <code>scenario.interference.emitter_file</code>. Leave columns that don't
+apply to a row empty.</p>
+<div class="admonition warning">
+<p class="admonition-title">Defaults apply only to missing columns</p>
+<p>A default below is used only when the column isn't in the file at all. An <strong>empty cell</strong> in a
+column that the row's type reads (for example a blank <code>freq_offset_hz</code> on a <code>CW</code> row) fails
+at <code>INIT</code>. Fill in every column your emitter types use.</p>
+</div>
+<h3 id="columns-for-every-emitter">Columns for every emitter<a class="headerlink" href="#columns-for-every-emitter" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
 <th>Column</th>
-<th>Type</th>
-<th>Description</th>
+<th>Default</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>id</code></td>
-<td>string</td>
-<td>Unique emitter identifier (e.g., <code>JAM_CW_1</code>)</td>
+<td><em>(required)</em></td>
+<td>Unique name</td>
 </tr>
 <tr>
 <td><code>type</code></td>
-<td>string</td>
-<td><code>CW</code>, <code>FM</code>, <code>BPSK</code>, <code>CHIRP</code>, <code>NARROWBAND_NOISE</code>, <code>BROADBAND_NOISE</code></td>
+<td><em>(required)</em></td>
+<td><code>CW</code>, <code>FM</code>, <code>BPSK</code>, and also <code>CHIRP</code>, <code>NARROWBAND_NOISE</code>, <code>BROADBAND_NOISE</code> (<a href="../signals/#interference">which are rendered</a>)</td>
 </tr>
 <tr>
 <td><code>geometry_mode</code></td>
-<td>string</td>
-<td><code>TRAJECTORY_FILE</code> or <code>STATIONARY_LLA</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="geometry-stationary-lla">Geometry — Stationary LLA<a class="headerlink" href="#geometry-stationary-lla" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Column</th>
-<th>Type</th>
-<th>Unit</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>latitude_deg</code></td>
-<td>float64</td>
-<td>°</td>
-<td>Geodetic latitude (WGS-84)</td>
+<td><em>(required)</em></td>
+<td><code>STATIONARY_LLA</code>, the only mode implemented</td>
 </tr>
 <tr>
-<td><code>longitude_deg</code></td>
-<td>float64</td>
-<td>°</td>
-<td>Geodetic longitude</td>
+<td><code>latitude_deg</code>, <code>longitude_deg</code>, <code>altitude_m</code></td>
+<td><em>(required)</em></td>
+<td>Location, WGS-84</td>
 </tr>
-<tr>
-<td><code>altitude_m</code></td>
-<td>float64</td>
-<td>m</td>
-<td>Height above ellipsoid</td>
-</tr>
-</tbody>
-</table>
-<h3 id="geometry-trajectory-file">Geometry — Trajectory File<a class="headerlink" href="#geometry-trajectory-file" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Column</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>trajectory_file</code></td>
-<td>string</td>
-<td>Path to CSV trajectory (same format as receiver trajectory)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="signal-columns">Signal Columns<a class="headerlink" href="#signal-columns" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Column</th>
-<th>Type</th>
-<th>Unit</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
 <tr>
 <td><code>power_dbm</code></td>
-<td>float64</td>
-<td>dBm</td>
-<td>Emitter power at the receiver</td>
+<td><code>-100</code></td>
+<td><strong>Transmit</strong> power in dBm, into the emitter's antenna</td>
 </tr>
 <tr>
 <td><code>center_freq_hz</code></td>
-<td>float64</td>
-<td>Hz</td>
-<td>Signal center frequency</td>
+<td><code>1575.42e6</code></td>
+<td>Carrier. Also chooses the RF band: the nearest of L1, L2, L5, B1, G1, G2.</td>
 </tr>
 <tr>
-<td><code>bandwidth_hz</code></td>
-<td>float64</td>
-<td>Hz</td>
-<td>Signal bandwidth (3-dB)</td>
+<td><code>pattern</code></td>
+<td><code>isotropic</code></td>
+<td>Emitter antenna: a built-in name or a CST file, <a href="../configuration/#antenna-elements">as for elements</a></td>
+</tr>
+<tr>
+<td><code>yaw_deg</code>, <code>pitch_deg</code>, <code>roll_deg</code></td>
+<td><code>0</code></td>
+<td>Emitter antenna orientation in local north-east-down axes</td>
 </tr>
 </tbody>
 </table>
-<h3 id="emitter-types-type-specific-parameters">Emitter Types &amp; Type-Specific Parameters<a class="headerlink" href="#emitter-types-type-specific-parameters" title="Permanent link">&para;</a></h3>
-<h4 id="cw-continuous-wave">CW — Continuous Wave<a class="headerlink" href="#cw-continuous-wave" title="Permanent link">&para;</a></h4>
+<p><strong>Received power is computed, not given.</strong> Free-space loss at the band's carrier is applied over
+the true distance to the receiver:</p>
+<div class="arithmatex">\[P_\text{rx} = P_\text{tx} + G_\text{tx} + G_\text{rx} + 20\log_{10}\frac{\lambda}{4\pi d}\]</div>
+<p>At L1 (<span class="arithmatex">\(\lambda\)</span> = 0.19 m), 1 km costs 96.4 dB. A 1 W (30 dBm) jammer 1 km away arrives at about
+−66 dBm, which is 64 dB above a −130 dBm satellite.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A jammer on a band with no satellites enabled adds that band to the output. For example, an
+L2 jammer in an L1-only scenario produces <code>L2</code> files containing only the jammer. Emitters more
+than max(15 MHz, sample rate) from a band's centre are left out of that band. Within one band,
+every jammer currently uses the first jammer's antenna pattern.</p>
+</div>
+<h3 id="columns-by-type">Columns by type<a class="headerlink" href="#columns-by-type" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>Column</th>
 <th>Type</th>
-<th>Unit</th>
-<th>Description</th>
+<th>Column</th>
+<th>Default</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td><code>CW</code></td>
 <td><code>freq_offset_hz</code></td>
-<td>float64</td>
-<td>Hz</td>
-<td>Frequency offset from center</td>
+<td><code>0</code></td>
+<td>Tone offset from <code>center_freq_hz</code></td>
 </tr>
-</tbody>
-</table>
-<h4 id="fm-triangle-frequency-modulation">FM — Triangle Frequency Modulation<a class="headerlink" href="#fm-triangle-frequency-modulation" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
 <tr>
-<th>Column</th>
-<th>Type</th>
-<th>Unit</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
+<td><code>FM</code></td>
 <td><code>freq_offset_hz</code></td>
-<td>float64</td>
-<td>Hz</td>
-<td>Center frequency offset</td>
+<td><code>0</code></td>
+<td>Centre offset</td>
 </tr>
 <tr>
+<td></td>
 <td><code>fm_deviation_hz</code></td>
-<td>float64</td>
-<td>Hz</td>
-<td>Peak frequency deviation</td>
+<td><code>1e6</code></td>
+<td>Peak deviation</td>
 </tr>
 <tr>
+<td></td>
 <td><code>fm_period_s</code></td>
-<td>float64</td>
-<td>s</td>
-<td>Sweep period</td>
+<td><code>0.001</code></td>
+<td>Triangle period</td>
 </tr>
-</tbody>
-</table>
-<h4 id="bpsk-binary-phase-shift-keying">BPSK — Binary Phase-Shift Keying<a class="headerlink" href="#bpsk-binary-phase-shift-keying" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
 <tr>
-<th>Column</th>
-<th>Type</th>
-<th>Unit</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
+<td><code>BPSK</code></td>
 <td><code>freq_offset_hz</code></td>
-<td>float64</td>
-<td>Hz</td>
+<td><code>0</code></td>
 <td>Carrier offset</td>
 </tr>
 <tr>
+<td></td>
 <td><code>bpsk_chip_rate</code></td>
-<td>float64</td>
-<td>chips/s</td>
-<td>Spreading code chip rate</td>
+<td><code>1.023e6</code></td>
+<td>Chips per second</td>
 </tr>
 <tr>
+<td></td>
 <td><code>bpsk_seed</code></td>
-<td>int</td>
-<td>—</td>
-<td>PRNG seed for code generation</td>
+<td><code>12345</code></td>
+<td>32-bit seed. The same seed always gives the same code.</td>
+</tr>
+<tr>
+<td><code>CHIRP</code></td>
+<td><code>chirp_sweep_hz</code>, <code>chirp_period_s</code>, <code>chirp_direction</code></td>
+<td><code>1e6</code>, <code>0.001</code>, <code>UP</code></td>
+<td>Parsed; not rendered yet</td>
+</tr>
+<tr>
+<td><code>*_NOISE</code></td>
+<td><code>bandwidth_hz</code></td>
+<td>fs/2</td>
+<td>Parsed; not rendered yet</td>
 </tr>
 </tbody>
 </table>
-<h4 id="chirp-linear-fm-sweep">CHIRP — Linear FM Sweep<a class="headerlink" href="#chirp-linear-fm-sweep" title="Permanent link">&para;</a></h4>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><span class="filename">config/jammers_l1.csv</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>id,type,geometry_mode,latitude_deg,longitude_deg,altitude_m,power_dbm,center_freq_hz,freq_offset_hz,fm_deviation_hz,fm_period_s,bpsk_chip_rate,bpsk_seed
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>CW_NORTH,CW,STATIONARY_LLA,32.0900,34.7800,30.0,10.0,1575.42e6,2000.0,,,,
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>FM_EAST,FM,STATIONARY_LLA,32.0800,34.7900,30.0,20.0,1575.42e6,0.0,1.0e6,0.001,,
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>BPSK_SOUTH,BPSK,STATIONARY_LLA,32.0700,34.7800,30.0,0.0,1575.42e6,0.0,,,1.023e6,1234
+</span></code></pre></div>
+<h2 id="antenna-patterns">Antenna patterns<a class="headerlink" href="#antenna-patterns" title="Permanent link">&para;</a></h2>
+<p>An element's or an emitter's <code>pattern</code> can point to a <strong>CST far-field export</strong> (<code>.txt</code>). The
+simulator reads gain and phase for both polarisation components on a θ/φ grid, so it gets
+polarisation coupling and angle-dependent group delay, not just a gain. To model a pattern
+that changes with frequency, give one export per frequency:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">pattern</span><span class="p">:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">1176.45e6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">patterns/crpa_L5.txt</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">1227.6e6</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">patterns/crpa_L2.txt</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">1575.42e6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">patterns/crpa_L1.txt</span>
+</span></code></pre></div>
+<p>Patterns are defined in the element's own frame: <code>orientation</code> turns that frame relative to the
+body, and the body's attitude turns it relative to the Earth.</p>
+<h2 id="conventions">Conventions<a class="headerlink" href="#conventions" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Column</th>
-<th>Type</th>
-<th>Unit</th>
-<th>Description</th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>chirp_sweep_hz</code></td>
-<td>float64</td>
-<td>Hz</td>
-<td>Total sweep width</td>
+<td>Positions</td>
+<td>ECEF metres (trajectories), WGS-84 degrees and metres (LLA fields)</td>
 </tr>
 <tr>
-<td><code>chirp_period_s</code></td>
-<td>float64</td>
-<td>s</td>
-<td>Sweep repetition period</td>
+<td>Body axes</td>
+<td>Forward-right-down. Lever arms are <code>[forward, right, down]</code>.</td>
 </tr>
 <tr>
-<td><code>chirp_direction</code></td>
-<td>string</td>
-<td>—</td>
-<td><code>UP</code>, <code>DOWN</code>, or <code>TRIANGLE</code></td>
-</tr>
-</tbody>
-</table>
-<h4 id="narrowband_noise-broadband_noise">NARROWBAND_NOISE / BROADBAND_NOISE<a class="headerlink" href="#narrowband_noise-broadband_noise" title="Permanent link">&para;</a></h4>
-<p>No additional type-specific parameters. Bandwidth controlled by <code>bandwidth_hz</code>.</p>
-<h3 id="example-multi-jammer-scenario">Example — Multi-Jammer Scenario<a class="headerlink" href="#example-multi-jammer-scenario" title="Permanent link">&para;</a></h3>
-<div class="highlight"><span class="filename">jammers_demo.csv</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>id,type,geometry_mode,latitude_deg,longitude_deg,altitude_m,power_dbm,center_freq_hz,bandwidth_hz,freq_offset_hz
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>JAM_CW,CW,STATIONARY_LLA,32.0853,34.7818,50.0,-40.0,1575.42e6,0,200.0
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>JAM_BB,BROADBAND_NOISE,STATIONARY_LLA,32.0900,34.7750,30.0,-30.0,1575.42e6,20.0e6,
-</code></pre></div>
-<hr />
-<h2 id="antenna-array-yaml">Antenna Array (YAML)<a class="headerlink" href="#antenna-array-yaml" title="Permanent link">&para;</a></h2>
-<p>Antenna elements are defined inline in the scenario configuration YAML. See the <a href="../configuration/#antenna-element-parameters">Configuration Reference</a> for the full parameter table.</p>
-<h3 id="coordinate-convention">Coordinate Convention<a class="headerlink" href="#coordinate-convention" title="Permanent link">&para;</a></h3>
-<p>Lever arms are specified in the <strong>body frame</strong> using <strong>Forward-Right-Down (FRD)</strong> convention:</p>
-<table>
-<thead>
-<tr>
-<th>Component</th>
-<th>Direction</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>lever_arm[0]</code></td>
-<td>Forward (nose)</td>
-</tr>
-<tr>
-<td><code>lever_arm[1]</code></td>
-<td>Right (starboard)</td>
-</tr>
-<tr>
-<td><code>lever_arm[2]</code></td>
-<td>Down</td>
-</tr>
-</tbody>
-</table>
-<p>Orientations use <strong>Yaw → Pitch → Roll</strong> (Z-Y-X intrinsic rotation) Euler angles.</p>
-<h3 id="example-4-element-square-array">Example — 4-Element Square Array<a class="headerlink" href="#example-4-element-square-array" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">antenna_array</span><span class="p">:</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">elements</span><span class="p">:</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ANT_1&quot;</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">      </span><span class="nt">lever_arm</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span><span class="w">     </span><span class="c1"># 5 cm left</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">      </span><span class="nt">orientation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ANT_2&quot;</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">      </span><span class="nt">lever_arm</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span><span class="w">      </span><span class="c1"># 5 cm right</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">      </span><span class="nt">orientation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ANT_3&quot;</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">      </span><span class="nt">lever_arm</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span><span class="w">      </span><span class="c1"># 5 cm forward</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">      </span><span class="nt">orientation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ANT_4&quot;</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">      </span><span class="nt">lever_arm</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-0.05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span><span class="w">     </span><span class="c1"># 5 cm aft</span>
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">      </span><span class="nt">orientation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span>
-</code></pre></div>
-<hr />
-<h2 id="units-reference">Units Reference<a class="headerlink" href="#units-reference" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Quantity</th>
-<th>Unit</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Position</td>
-<td>metres (m)</td>
-</tr>
-<tr>
-<td>Velocity</td>
-<td>m/s</td>
-</tr>
-<tr>
-<td>Acceleration</td>
-<td>m/s²</td>
-</tr>
-<tr>
-<td>Jerk</td>
-<td>m/s³</td>
-</tr>
-<tr>
-<td>Angles</td>
-<td>degrees (°)</td>
-</tr>
-<tr>
-<td>Angular rates</td>
-<td>°/s</td>
-</tr>
-<tr>
-<td>Angular acceleration</td>
-<td>°/s²</td>
-</tr>
-<tr>
-<td>Angular jerk</td>
-<td>°/s³</td>
+<td>Euler angles</td>
+<td>Yaw → pitch → roll (Z-Y-X intrinsic), in degrees</td>
 </tr>
 <tr>
 <td>Time</td>
-<td>seconds (s)</td>
-</tr>
-<tr>
-<td>Frequency</td>
-<td>Hz</td>
+<td>Seconds from <code>start_epoch_utc</code> (UTC in the YAML, GPS time inside)</td>
 </tr>
 <tr>
 <td>Power</td>
-<td>dBm</td>
+<td>dBm, frequency in Hz</td>
 </tr>
 </tbody>
 </table>
@@ -1712,9 +1717,53 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../signals/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Signals &amp; interference">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Signals & interference
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../outputs/" class="md-footer__link md-footer__link--next" aria-label="Next: Output files">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Output files
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      GNSS Testbed Simulator · v3.5
+    </div>
   
   
 </div>
@@ -1732,12 +1781,14 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "content.code.copy", "content.tabs.link", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.instant", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../assets/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
       
     
   </body>

@@ -6,21 +6,23 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="GPU-Accelerated GNSS Signal Simulation Engine — High-Fidelity, Multi-Constellation, Multi-Band">
+        <meta name="description" content="GPU-accelerated GNSS signal simulator — multi-constellation, multi-band, multi-element, with interference.">
       
       
       
+        <link rel="canonical" href="https://rronkin.github.io/gnss-testbed-docs/user-guide/configuration/">
       
-        <link rel="prev" href="../getting-started/">
+      
+        <link rel="prev" href="../../deploy/monitoring/">
       
       
-        <link rel="next" href="../inputs/">
+        <link rel="next" href="../signals/">
       
       
         
       
       
-      <link rel="icon" href="../..">
+      <link rel="icon" href="../../assets/logo.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
@@ -69,7 +71,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="cyan">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -78,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#configuration-reference" class="md-skip">
+        <a href="#configuration" class="md-skip">
           Skip to content
         </a>
       
@@ -90,12 +92,13 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="GNSS Testbed Simulator" class="md-header__button md-logo" aria-label="GNSS Testbed Simulator" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m11.62 1 5.66 5.67-2.12 2.12-2.12-2.12-1.42 1.42 2.33 2.32-1.16 1.17.45.46a2.5 2.5 0 0 1 2.83.5l-3.53 3.53a2.5 2.5 0 0 1-.5-2.83l-.46-.45-1.17 1.16-2.32-2.33-1.42 1.42 2.12 2.12-2.12 2.12L1 11.62 3.14 9.5l2.12 2.12 1.41-1.41-2.83-2.83c-.78-.78-.78-2.05 0-2.83l.71-.71c.78-.78 2.05-.78 2.83 0l2.83 2.83 1.41-1.41L9.5 3.14zM18 14a4 4 0 0 1-4 4v-2a2 2 0 0 0 2-2zm4 0a8 8 0 0 1-8 8v-2a6 6 0 0 0 6-6z"/></svg>
+  <img src="../../assets/logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -125,20 +128,20 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
   
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
   
@@ -175,6 +178,8 @@
         </button>
       </nav>
       
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
@@ -193,14 +198,8 @@
     
   </nav>
   
-</header>
     
-    <div class="md-container" data-md-component="container">
       
-      
-        
-          
-            
 <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
@@ -229,17 +228,42 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../../architecture/" class="md-tabs__link">
-        
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/" class="md-tabs__link">
+          
   
   
     
   
-  Architecture
+  Get started
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../deploy/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Deploy
+
+        </a>
+      </li>
+    
   
 
       
@@ -253,11 +277,35 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../getting-started/" class="md-tabs__link">
+        <a href="./" class="md-tabs__link">
           
   
   
-  User Guide
+    
+  
+  User guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../architecture/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  How it works
 
         </a>
       </li>
@@ -271,32 +319,13 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../examples/" class="md-tabs__link">
+      <a href="../../troubleshooting/" class="md-tabs__link">
         
   
   
     
   
-  Examples
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../benchmarks/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Performance
+  Troubleshooting
 
       </a>
     </li>
@@ -306,7 +335,13 @@
     </ul>
   </div>
 </nav>
-          
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
       
       <main class="md-main" data-md-component="main">
@@ -327,8 +362,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="GNSS Testbed Simulator" class="md-nav__button md-logo" aria-label="GNSS Testbed Simulator" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m11.62 1 5.66 5.67-2.12 2.12-2.12-2.12-1.42 1.42 2.33 2.32-1.16 1.17.45.46a2.5 2.5 0 0 1 2.83.5l-3.53 3.53a2.5 2.5 0 0 1-.5-2.83l-.46-.45-1.17 1.16-2.32-2.33-1.42 1.42 2.12 2.12-2.12 2.12L1 11.62 3.14 9.5l2.12 2.12 1.41-1.41-2.83-2.83c-.78-.78-.78-2.05 0-2.83l.71-.71c.78-.78 2.05-.78 2.83 0l2.83 2.83 1.41-1.41L9.5 3.14zM18 14a4 4 0 0 1-4 4v-2a2 2 0 0 0 2-2zm4 0a8 8 0 0 1-8 8v-2a6 6 0 0 0 6-6z"/></svg>
+  <img src="../../assets/logo.svg" alt="logo">
 
     </a>
     GNSS Testbed Simulator
@@ -369,15 +403,84 @@
   
   
   
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Get started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Get started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../architecture/" class="md-nav__link">
+      <a href="../../getting-started/installation/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Architecture
+    Installation
   
 
     
@@ -386,6 +489,208 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../deploy/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deploy
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Deploy
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPU server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recording client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/air-gapped/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Air-gapped networks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploy/monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -399,6 +704,20 @@
   
   
     
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -415,17 +734,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
   <span class="md-ellipsis">
     
   
-    User Guide
+    User guide
   
 
     
@@ -436,44 +755,16 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
-    User Guide
+    User guide
   
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../getting-started/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Getting Started
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -542,22 +833,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scenario-configuration" class="md-nav__link">
+  <a href="#scenario" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scenario Configuration
+        Scenario
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Scenario Configuration">
+    <nav class="md-nav" aria-label="Scenario">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#full-annotated-example" class="md-nav__link">
+  <a href="#annotated-example" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Full Annotated Example
+        Annotated example
       
     </span>
   </a>
@@ -565,10 +856,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#scenario-parameters" class="md-nav__link">
+  <a href="#time-and-place" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scenario Parameters
+        Time and place
       
     </span>
   </a>
@@ -576,10 +867,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#constellation-parameters" class="md-nav__link">
+  <a href="#satellites" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Constellation Parameters
+        Satellites
       
     </span>
   </a>
@@ -587,10 +878,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#antenna-element-parameters" class="md-nav__link">
+  <a href="#antenna-elements" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Antenna Element Parameters
+        Antenna elements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interference
       
     </span>
   </a>
@@ -606,19 +908,19 @@
   <a href="#simulator-parameters" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Simulator Parameters
+        Simulator parameters
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Simulator Parameters">
+    <nav class="md-nav" aria-label="Simulator parameters">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#full-annotated-example_1" class="md-nav__link">
+  <a href="#choosing-a-sample-rate" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Full Annotated Example
+        Choosing a sample rate
       
     </span>
   </a>
@@ -626,21 +928,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#simulator-parameters_1" class="md-nav__link">
+  <a href="#timing-rules" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Simulator Parameters
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#timing-constraints" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Timing Constraints
+        Timing rules
       
     </span>
   </a>
@@ -668,6 +959,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../signals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signals & interference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../inputs/" class="md-nav__link">
         
   
@@ -675,7 +994,7 @@
   <span class="md-ellipsis">
     
   
-    Input Formats
+    Input files
   
 
     
@@ -703,7 +1022,214 @@
   <span class="md-ellipsis">
     
   
-    Output Formats
+    Output files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ground-truth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ground truth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How it works
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    How it works
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signal fidelity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
   
 
     
@@ -731,41 +1257,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../examples/" class="md-nav__link">
+      <a href="../../troubleshooting/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Examples
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../benchmarks/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Performance
+    Troubleshooting
   
 
     
@@ -805,22 +1304,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scenario-configuration" class="md-nav__link">
+  <a href="#scenario" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scenario Configuration
+        Scenario
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Scenario Configuration">
+    <nav class="md-nav" aria-label="Scenario">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#full-annotated-example" class="md-nav__link">
+  <a href="#annotated-example" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Full Annotated Example
+        Annotated example
       
     </span>
   </a>
@@ -828,10 +1327,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#scenario-parameters" class="md-nav__link">
+  <a href="#time-and-place" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scenario Parameters
+        Time and place
       
     </span>
   </a>
@@ -839,10 +1338,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#constellation-parameters" class="md-nav__link">
+  <a href="#satellites" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Constellation Parameters
+        Satellites
       
     </span>
   </a>
@@ -850,10 +1349,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#antenna-element-parameters" class="md-nav__link">
+  <a href="#antenna-elements" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Antenna Element Parameters
+        Antenna elements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interference
       
     </span>
   </a>
@@ -869,19 +1379,19 @@
   <a href="#simulator-parameters" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Simulator Parameters
+        Simulator parameters
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Simulator Parameters">
+    <nav class="md-nav" aria-label="Simulator parameters">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#full-annotated-example_1" class="md-nav__link">
+  <a href="#choosing-a-sample-rate" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Full Annotated Example
+        Choosing a sample rate
       
     </span>
   </a>
@@ -889,21 +1399,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#simulator-parameters_1" class="md-nav__link">
+  <a href="#timing-rules" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Simulator Parameters
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#timing-constraints" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Timing Constraints
+        Timing rules
       
     </span>
   </a>
@@ -932,354 +1431,380 @@
 
 
 
-<h1 id="configuration-reference">Configuration Reference<a class="headerlink" href="#configuration-reference" title="Permanent link">&para;</a></h1>
-<p>The simulator is driven by <strong>two separate YAML files</strong>, each targeting a different audience and change frequency.</p>
+<h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h1>
+<p class="lead">Two YAML files drive every run. They are kept apart because different people
+own them and they change at different rates.</p>
+
 <table>
 <thead>
 <tr>
 <th>File</th>
-<th>Role</th>
-<th>Audience</th>
+<th>Says</th>
+<th>Owned by</th>
+<th>Lives on</th>
 <th>Changes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>scenario_config.yaml</code></td>
-<td><strong>What</strong> to simulate</td>
-<td>User / test engineer</td>
-<td>Per scenario</td>
+<td><strong>Scenario</strong> (for example <code>config/scenario_config.yaml</code>)</td>
+<td><em>What</em> to simulate: when, where, which signals, which array, which jammers</td>
+<td>Test engineer</td>
+<td>Client; sent with each run</td>
+<td>Every run</td>
 </tr>
 <tr>
-<td><code>simulator_params.yaml</code></td>
-<td><strong>How</strong> to simulate</td>
-<td>System designer</td>
+<td><strong><code>config/simulator_params.yaml</code></strong></td>
+<td><em>How</em> to simulate: sample rates, carriers, frame timing, filters, atmosphere</td>
+<td>Whoever runs the server</td>
+<td>Server; read at start-up</td>
 <td>Rarely</td>
 </tr>
 </tbody>
 </table>
-<hr />
-<h2 id="scenario-configuration">Scenario Configuration<a class="headerlink" href="#scenario-configuration" title="Permanent link">&para;</a></h2>
-<p><strong>File:</strong> <code>config/scenario_config.yaml</code></p>
-<p>This file defines the simulation scenario: time window, receiver position/trajectory, satellite constellations, interference, and antenna array.</p>
-<h3 id="full-annotated-example">Full Annotated Example<a class="headerlink" href="#full-annotated-example" title="Permanent link">&para;</a></h3>
-<div class="highlight"><span class="filename">scenario_config.yaml</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">scenario</span><span class="p">:</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="c1"># ── Time ──</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">start_epoch_utc</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2026-01-15T08:00:00Z&quot;</span><span class="w">   </span><span class="c1"># Simulation start (ISO 8601 UTC)</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">duration_s</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90.0</span><span class="w">                            </span><span class="c1"># Total simulation duration (seconds)</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="c1"># ── Receiver Position ──</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="c1"># Option A: Static position (LLA)</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">rx_latitude</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">32.08</span><span class="w">                          </span><span class="c1"># WGS-84 latitude (degrees, north +)</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">rx_longitude</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">34.78</span><span class="w">                         </span><span class="c1"># WGS-84 longitude (degrees, east +)</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">rx_altitude_m</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50.0</span><span class="w">                         </span><span class="c1"># Height above ellipsoid (meters)</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">rx_orientation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span><span class="w">            </span><span class="c1"># [yaw, pitch, roll] in degrees</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="c1"># Option B: Dynamic trajectory (overrides static position)</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="c1"># receiver_trajectory: &quot;path/to/trajectory.csv&quot;</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="nt">elevation_mask_deg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0</span><span class="w">                    </span><span class="c1"># Min satellite elevation (degrees)</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="c1"># ── Satellites ──</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="nt">satellites</span><span class="p">:</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="nt">rinex_nav_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w">                       </span><span class="c1"># null = auto-download from CDDIS</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="nt">constellations</span><span class="p">:</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">      </span><span class="nt">GPS_L1</span><span class="p">:</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">        </span><span class="nt">common_power_dbm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-130.0</span><span class="w">               </span><span class="c1"># Nominal received power (dBm)</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">        </span><span class="nt">sv_power_offsets_db</span><span class="p">:</span><span class="w">                    </span><span class="c1"># Optional per-SV delta (dB)</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">          </span><span class="nt">G01</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">+2.0</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">          </span><span class="nt">G15</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-1.5</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">      </span><span class="nt">GPS_L2</span><span class="p">:</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">        </span><span class="nt">common_power_dbm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-130.0</span>
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">      </span><span class="nt">Galileo_E1</span><span class="p">:</span>
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">        </span><span class="nt">common_power_dbm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-130.0</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">  </span><span class="c1"># ── Interference ──</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">  </span><span class="nt">interference</span><span class="p">:</span>
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">    </span><span class="nt">emitter_file</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;config/jammers_demo.csv&quot;</span><span class="w">    </span><span class="c1"># Path to jammer CSV (omit to disable)</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">  </span><span class="c1"># ── Antenna Array ──</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">  </span><span class="nt">antenna_array</span><span class="p">:</span>
-<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span><span class="nt">elements</span><span class="p">:</span>
-<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ANT_1&quot;</span>
-<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">        </span><span class="nt">lever_arm</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span><span class="w">          </span><span class="c1"># 5 cm left of COM [fwd, right, down]</span>
-<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">        </span><span class="nt">orientation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span><span class="w">           </span><span class="c1"># [yaw, pitch, roll] degrees</span>
-<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">        </span><span class="nt">pattern</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;isotropic&quot;</span><span class="w">                   </span><span class="c1"># or path to CST pattern file</span>
-<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
-<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ANT_2&quot;</span>
-<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">        </span><span class="nt">lever_arm</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span><span class="w">           </span><span class="c1"># 5 cm right of COM</span>
-<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">        </span><span class="nt">orientation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span>
-<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
-<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ANT_3&quot;</span>
-<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">        </span><span class="nt">lever_arm</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span><span class="w">           </span><span class="c1"># 5 cm forward</span>
-<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">        </span><span class="nt">orientation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span>
-<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>
-<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;ANT_4&quot;</span>
-<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">        </span><span class="nt">lever_arm</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">-0.05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span><span class="w">          </span><span class="c1"># 5 cm aft</span>
-<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">        </span><span class="nt">orientation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span>
-</code></pre></div>
-<h3 id="scenario-parameters">Scenario Parameters<a class="headerlink" href="#scenario-parameters" title="Permanent link">&para;</a></h3>
+<p>Any field you leave out takes its default. A scenario of ten lines, like the
+<a href="../../getting-started/#describe-the-scenario">quickstart</a>'s, is complete.</p>
+<h2 id="scenario">Scenario<a class="headerlink" href="#scenario" title="Permanent link">&para;</a></h2>
+<h3 id="annotated-example">Annotated example<a class="headerlink" href="#annotated-example" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><span class="filename">scenario.yaml</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">scenario</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="c1"># ── When ──</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">start_epoch_utc</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2026-01-15T08:00:00Z&quot;</span><span class="w">   </span><span class="c1"># ISO 8601, UTC</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">duration_s</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60.0</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="c1"># ── Where: either a static position… ──</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">rx_latitude</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">32.08</span><span class="w">                        </span><span class="c1"># WGS-84, degrees north</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">rx_longitude</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">34.78</span><span class="w">                       </span><span class="c1"># degrees east</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">rx_altitude_m</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50.0</span><span class="w">                       </span><span class="c1"># metres above the ellipsoid</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">rx_orientation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span><span class="w">           </span><span class="c1"># yaw, pitch, roll in degrees</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="c1"># …or a trajectory, which overrides the static position</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="c1"># receiver_trajectory: &quot;trajectories/flight.csv&quot;</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="nt">elevation_mask_deg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="c1"># ── Which signals ──</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="nt">satellites</span><span class="p">:</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="nt">rinex_nav_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w">                    </span><span class="c1"># null: found in data/rinex/ by date</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="nt">constellations</span><span class="p">:</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">      </span><span class="nt">GPS_L1</span><span class="p">:</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">        </span><span class="nt">common_power_dbm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-130.0</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">        </span><span class="nt">sv_power_offsets_db</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> G05</span><span class="p">:</span><span class="w"> </span><span class="nv">+3.0</span><span class="p p-Indicator">,</span><span class="nt"> G13</span><span class="p">:</span><span class="w"> </span><span class="nv">-2.0</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">      </span><span class="nt">GPS_L2</span><span class="p">:</span><span class="w">     </span><span class="p p-Indicator">{</span><span class="nt"> enabled</span><span class="p">:</span><span class="w"> </span><span class="nv">true</span><span class="p p-Indicator">,</span><span class="nt">  common_power_dbm</span><span class="p">:</span><span class="w"> </span><span class="nv">-130.0</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">      </span><span class="nt">GPS_L5</span><span class="p">:</span><span class="w">     </span><span class="p p-Indicator">{</span><span class="nt"> enabled</span><span class="p">:</span><span class="w"> </span><span class="nv">false</span><span class="p p-Indicator">,</span><span class="nt"> common_power_dbm</span><span class="p">:</span><span class="w"> </span><span class="nv">-125.0</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">      </span><span class="nt">Galileo_E1</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> enabled</span><span class="p">:</span><span class="w"> </span><span class="nv">true</span><span class="p p-Indicator">,</span><span class="nt">  common_power_dbm</span><span class="p">:</span><span class="w"> </span><span class="nv">-127.0</span><span class="p p-Indicator">,</span><span class="nt"> max_sats</span><span class="p">:</span><span class="w"> </span><span class="nv">6</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">      </span><span class="nt">Beidou_B1I</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> enabled</span><span class="p">:</span><span class="w"> </span><span class="nv">false</span><span class="p p-Indicator">,</span><span class="nt"> common_power_dbm</span><span class="p">:</span><span class="w"> </span><span class="nv">-130.0</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">      </span><span class="nt">Beidou_B1C</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> enabled</span><span class="p">:</span><span class="w"> </span><span class="nv">false</span><span class="p p-Indicator">,</span><span class="nt"> common_power_dbm</span><span class="p">:</span><span class="w"> </span><span class="nv">-130.0</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">      </span><span class="nt">GLONASS_L1</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> enabled</span><span class="p">:</span><span class="w"> </span><span class="nv">false</span><span class="p p-Indicator">,</span><span class="nt"> common_power_dbm</span><span class="p">:</span><span class="w"> </span><span class="nv">-131.0</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">      </span><span class="nt">GLONASS_L2</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> enabled</span><span class="p">:</span><span class="w"> </span><span class="nv">false</span><span class="p p-Indicator">,</span><span class="nt"> common_power_dbm</span><span class="p">:</span><span class="w"> </span><span class="nv">-131.0</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">  </span><span class="c1"># ── Jammers (omit the section for none) ──</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">  </span><span class="nt">interference</span><span class="p">:</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span><span class="nt">emitter_file</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;config/jammers.csv&quot;</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">  </span><span class="c1"># ── Antenna array: one entry per element ──</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">  </span><span class="nt">antenna_array</span><span class="p">:</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">    </span><span class="nt">elements</span><span class="p">:</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ANT_1</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">        </span><span class="nt">lever_arm</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span><span class="w">        </span><span class="c1"># forward, right, down (metres)</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">        </span><span class="nt">orientation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span><span class="w">        </span><span class="c1"># yaw, pitch, roll (degrees)</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">        </span><span class="nt">pattern</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">isotropic</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ANT_2</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">        </span><span class="nt">lever_arm</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.05</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">        </span><span class="nt">orientation</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.0</span><span class="p p-Indicator">]</span>
+</span></code></pre></div>
+<h3 id="time-and-place">Time and place<a class="headerlink" href="#time-and-place" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Unit</th>
+<th>Field</th>
 <th>Default</th>
-<th>Description</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>start_epoch_utc</code></td>
-<td>string</td>
-<td>ISO 8601</td>
 <td><code>2026-01-15T12:00:00Z</code></td>
-<td>Simulation start time</td>
+<td>Scenario start. Also selects the navigation file.</td>
 </tr>
 <tr>
 <td><code>duration_s</code></td>
-<td>float</td>
-<td>seconds</td>
 <td><code>60.0</code></td>
-<td>Total simulation duration</td>
+<td>Length of the scenario. The run is <code>duration_s / frame_period_s</code> frames.</td>
 </tr>
 <tr>
-<td><code>receiver_trajectory</code></td>
-<td>string</td>
-<td>path</td>
-<td><code>null</code></td>
-<td>CSV trajectory file (see <a href="../inputs/">Inputs</a>)</td>
-</tr>
-<tr>
-<td><code>rx_latitude</code></td>
-<td>float</td>
-<td>degrees</td>
-<td><code>48.8584</code></td>
-<td>Static receiver latitude (WGS-84)</td>
-</tr>
-<tr>
-<td><code>rx_longitude</code></td>
-<td>float</td>
-<td>degrees</td>
-<td><code>2.2945</code></td>
-<td>Static receiver longitude (WGS-84)</td>
-</tr>
-<tr>
-<td><code>rx_altitude_m</code></td>
-<td>float</td>
-<td>meters</td>
-<td><code>330.0</code></td>
-<td>Static receiver altitude</td>
+<td><code>rx_latitude</code>, <code>rx_longitude</code>, <code>rx_altitude_m</code></td>
+<td>Paris</td>
+<td>Static receiver position (WGS-84)</td>
 </tr>
 <tr>
 <td><code>rx_orientation</code></td>
-<td>float[3]</td>
-<td>degrees</td>
-<td><code>[0,0,0]</code></td>
-<td>Static receiver attitude [yaw, pitch, roll]</td>
+<td><code>[0, 0, 0]</code></td>
+<td>Static attitude: yaw, pitch, roll, in degrees, Z-Y-X</td>
+</tr>
+<tr>
+<td><code>receiver_trajectory</code></td>
+<td><code>null</code></td>
+<td>Path to a <a href="../inputs/#trajectory-csv">trajectory CSV</a> (on the server). Overrides the static fields.</td>
 </tr>
 <tr>
 <td><code>elevation_mask_deg</code></td>
-<td>float</td>
-<td>degrees</td>
 <td><code>10.0</code></td>
-<td>Minimum satellite elevation to include</td>
+<td>Satellites below this elevation are not generated</td>
 </tr>
 </tbody>
 </table>
-<h3 id="constellation-parameters">Constellation Parameters<a class="headerlink" href="#constellation-parameters" title="Permanent link">&para;</a></h3>
+<h3 id="satellites">Satellites<a class="headerlink" href="#satellites" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
+<th>Field</th>
 <th>Default</th>
-<th>Description</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>enabled</code></td>
-<td>bool</td>
-<td><code>false</code></td>
-<td>Enable this constellation-band</td>
+<td><code>rinex_nav_file</code></td>
+<td><code>null</code></td>
+<td>A path on the server, or <code>null</code> to search <code>data/rinex/</code> and <code>tests/data/</code> for the scenario date (up to five days earlier)</td>
 </tr>
 <tr>
-<td><code>common_power_dbm</code></td>
-<td>float</td>
+<td><code>constellations.&lt;KEY&gt;.enabled</code></td>
+<td><code>false</code> (<code>GPS_L1</code>: <code>true</code>)</td>
+<td>Generate this signal</td>
+</tr>
+<tr>
+<td><code>…common_power_dbm</code></td>
 <td><code>-130.0</code></td>
-<td>Nominal received power for all SVs (dBm)</td>
+<td>Received power for every satellite of this signal</td>
 </tr>
 <tr>
-<td><code>sv_power_offsets_db</code></td>
-<td>map</td>
+<td><code>…sv_power_offsets_db</code></td>
 <td><code>{}</code></td>
-<td>Per-SV power offset (dB), additive</td>
+<td>Per-satellite adjustment in dB, added to the common power</td>
+</tr>
+<tr>
+<td><code>…max_sats</code></td>
+<td>all visible</td>
+<td>Keep at most this many satellites of this constellation, in RINEX order</td>
 </tr>
 </tbody>
 </table>
-<h3 id="antenna-element-parameters">Antenna Element Parameters<a class="headerlink" href="#antenna-element-parameters" title="Permanent link">&para;</a></h3>
+<p>Valid keys are <code>GPS_L1</code>, <code>GPS_L2</code>, <code>GPS_L5</code>, <code>Galileo_E1</code>, <code>Beidou_B1I</code>, <code>Beidou_B1C</code>,
+<code>GLONASS_L1</code> and <code>GLONASS_L2</code>. The <a href="../signals/">signals table</a> gives each one's modulation,
+carrier and band.</p>
+<p>Power is the <strong>total power of the signal</strong> at the antenna. A sample rate narrower than the signal
+emits proportionally less of it, as a real front end would.</p>
+<h3 id="antenna-elements">Antenna elements<a class="headerlink" href="#antenna-elements" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Unit</th>
+<th>Field</th>
 <th>Default</th>
-<th>Description</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>id</code></td>
-<td>string</td>
-<td>—</td>
-<td><code>"ANT_1"</code></td>
-<td>Unique element identifier</td>
+<td><code>ANT_1</code></td>
+<td>Name for the element</td>
 </tr>
 <tr>
 <td><code>lever_arm</code></td>
-<td>float[3]</td>
-<td>meters</td>
-<td><code>[0,0,0]</code></td>
-<td>Offset from COM in body frame [forward, right, down]</td>
+<td><code>[0, 0, 0]</code></td>
+<td>Offset from the receiver reference point in body axes, forward-right-down, in metres</td>
 </tr>
 <tr>
 <td><code>orientation</code></td>
-<td>float[3]</td>
-<td>degrees</td>
-<td><code>[0,0,0]</code></td>
-<td>Boresight direction [yaw, pitch, roll] (Z-Y-X)</td>
+<td><code>[0, 0, 0]</code></td>
+<td>Boresight relative to the body: yaw, pitch, roll in degrees</td>
 </tr>
 <tr>
 <td><code>pattern</code></td>
-<td>string</td>
-<td>—</td>
-<td><code>"isotropic"</code></td>
-<td><code>"isotropic"</code> or path to antenna pattern file</td>
+<td><code>isotropic</code></td>
+<td>See below</td>
 </tr>
 </tbody>
 </table>
-<hr />
-<h2 id="simulator-parameters">Simulator Parameters<a class="headerlink" href="#simulator-parameters" title="Permanent link">&para;</a></h2>
-<p><strong>File:</strong> <code>config/simulator_params.yaml</code></p>
-<p>This file controls the simulation engine's internal settings. It is typically configured once per hardware profile and rarely changed between scenarios.</p>
-<h3 id="full-annotated-example_1">Full Annotated Example<a class="headerlink" href="#full-annotated-example_1" title="Permanent link">&para;</a></h3>
-<div class="highlight"><span class="filename">simulator_params.yaml</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">simulator</span><span class="p">:</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="c1"># ── Timing ──</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">frame_period_s</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100e-3</span><span class="w">                      </span><span class="c1"># Frame duration (outer loop period)</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">channel_period_s</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1e-3</span><span class="w">                       </span><span class="c1"># Geometry snapshot cadence</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="c1"># ── Sampling ── (per RF band)</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">sample_rate_hz</span><span class="p">:</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nt">L1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6.138e6</span><span class="w">                                </span><span class="c1"># L1 band sample rate (Hz)</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nt">L2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6.138e6</span><span class="w">                                </span><span class="c1"># L2 band sample rate (Hz)</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="nt">carrier_freq_hz</span><span class="p">:</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nt">L1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1575.42e6</span><span class="w">                              </span><span class="c1"># L1 carrier frequency (Hz)</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="nt">L2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1227.60e6</span><span class="w">                              </span><span class="c1"># L2 carrier frequency (Hz)</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="c1"># ── Polyphase Resampler ──</span>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="nt">polyphase_L</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64</span><span class="w">                              </span><span class="c1"># Number of polyphase branches</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="nt">polyphase_taps</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24</span><span class="w">                           </span><span class="c1"># Filter depth per branch</span>
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="nt">polyphase_beta</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8.0</span><span class="w">                          </span><span class="c1"># Kaiser window beta</span>
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">  </span><span class="nt">polyphase_cutoff_frac</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.85</span><span class="w">                  </span><span class="c1"># Prototype filter cutoff (fraction of Nyquist)</span>
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="nt">pipeline</span><span class="p">:</span>
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">  </span><span class="nt">enable_telemetry</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">                       </span><span class="c1"># Write per-frame telemetry</span>
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">  </span><span class="nt">batch_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">                               </span><span class="c1"># Emitters processed concurrently</span>
-<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
-<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="nt">debug</span><span class="p">:</span>
-<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">  </span><span class="nt">freeze_nav_bit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">                        </span><span class="c1"># Force nav bit to +1 (debug)</span>
-<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">  </span><span class="nt">freeze_dynamics</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">                       </span><span class="c1"># Force zero delay/Doppler (debug)</span>
-</code></pre></div>
-<h3 id="simulator-parameters_1">Simulator Parameters<a class="headerlink" href="#simulator-parameters_1" title="Permanent link">&para;</a></h3>
+<p><code>pattern</code> takes one of:</p>
+<ul>
+<li><strong>A built-in</strong>: <code>isotropic</code> (RHCP, unit gain), <code>rhcp</code>, <code>lhcp</code>, <code>vpol</code>, <code>hpol</code>, <code>vdop</code> or <code>hdop</code>
+  (the last two are dipoles with sin θ gain).</li>
+<li><strong>A CST export</strong>: a path to a CST far-field <code>.txt</code> file on the server. Gain, polarisation and
+  group delay are interpolated in angle.</li>
+<li><strong>Several CST exports by frequency</strong>: a map from frequency in Hz to file path. The pattern is
+  interpolated between frequencies.</li>
+</ul>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">pattern</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">1227.6e6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">patterns/ant_L2.txt</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">1575.42e6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">patterns/ant_L1.txt</span>
+</span></code></pre></div>
+<p>Element <em>m</em> is generated for every enabled band, so the run writes <code>bands × elements</code> streams.</p>
+<h3 id="interference">Interference<a class="headerlink" href="#interference" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Unit</th>
+<th>Field</th>
 <th>Default</th>
-<th>Description</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>interference.emitter_file</code></td>
+<td>none</td>
+<td>Path to an <a href="../inputs/#emitter-csv">emitter CSV</a> (on the server). Leave it out for no jammers.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="simulator-parameters">Simulator parameters<a class="headerlink" href="#simulator-parameters" title="Permanent link">&para;</a></h2>
+<p><code>config/simulator_params.yaml</code>, as shipped:</p>
+<div class="language-yaml highlight"><span class="filename">config/simulator_params.yaml</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">simulator</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">frame_period_s</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100e-3</span><span class="w">          </span><span class="c1"># one frame = 100 ms of signal</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">channel_period_s</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1e-3</span><span class="w">          </span><span class="c1"># geometry snapshot every 1 ms</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">sample_rate_hz</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12.276e6</span><span class="w">        </span><span class="c1"># all bands</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">carrier_freq_hz</span><span class="p">:</span><span class="w">                </span><span class="c1"># centre of each RF band&#39;s stream</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nt">L1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1575.42e6</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nt">L2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1227.60e6</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="nt">L5</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1176.45e6</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="nt">B1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1561.098e6</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="nt">G1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1602.0e6</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="nt">G2</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1246.0e6</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">  </span><span class="nt">polyphase_L</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">256</span><span class="w">                </span><span class="c1"># delay step = 1/256 sample</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">  </span><span class="nt">polyphase_taps</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">24</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">  </span><span class="nt">polyphase_beta</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8.0</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">  </span><span class="nt">polyphase_cutoff_frac</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.85</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">  </span><span class="nt">atmosphere</span><span class="p">:</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">    </span><span class="nt">iono_model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">klobuchar</span><span class="w">         </span><span class="c1"># klobuchar | bdgim | none</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">    </span><span class="nt">tropo_model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">saastamoinen</span><span class="w">     </span><span class="c1"># saastamoinen | none</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">    </span><span class="nt">klobuchar_source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gps</span><span class="w">         </span><span class="c1"># gps (GPSA/GPSB) | bds (BDSA/BDSB)</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">    </span><span class="nt">bdgim_alpha</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w">             </span><span class="c1"># 9 coefficients in TECu, required for bdgim</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">    </span><span class="nt">rel_humidity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.7</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="nt">pipeline</span><span class="p">:</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">  </span><span class="nt">enable_telemetry</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">  </span><span class="nt">batch_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="nt">debug</span><span class="p">:</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">  </span><span class="nt">freeze_nav_bit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">           </span><span class="c1"># force navigation data to +1</span>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">  </span><span class="nt">freeze_dynamics</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">          </span><span class="c1"># zero delay and Doppler</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>frame_period_s</code></td>
-<td>float</td>
-<td>seconds</td>
 <td><code>0.1</code></td>
-<td>Duration of each processing frame</td>
+<td>Signal per frame, and the unit of client requests</td>
 </tr>
 <tr>
 <td><code>channel_period_s</code></td>
-<td>float</td>
-<td>seconds</td>
 <td><code>0.001</code></td>
-<td>Coarse delay interpolation cadence</td>
+<td>Spacing of exact geometry evaluations. Delays between them use cubic Hermite interpolation.</td>
 </tr>
 <tr>
 <td><code>sample_rate_hz</code></td>
-<td>float or dict</td>
-<td>Hz</td>
-<td><code>50.0e6</code></td>
-<td>Sampling rate (scalar or per-band)</td>
+<td><code>24.552e6</code> (file: <code>12.276e6</code>)</td>
+<td>Complex sample rate, as one number or a map per RF band</td>
 </tr>
 <tr>
 <td><code>carrier_freq_hz</code></td>
-<td>float or dict</td>
-<td>Hz</td>
-<td><code>1575.42e6</code></td>
-<td>Carrier frequency (scalar or per-band)</td>
-</tr>
-<tr>
-<td><code>noise_power_dbm</code></td>
-<td>float</td>
-<td>dBm/Hz</td>
-<td><code>-174.0</code></td>
-<td>Thermal noise power spectral density</td>
+<td>nominal per band</td>
+<td>Centre frequency of each RF band's output (<code>L1</code>, <code>L2</code>, <code>L5</code>, <code>B1</code>, <code>G1</code>, <code>G2</code>)</td>
 </tr>
 <tr>
 <td><code>polyphase_L</code></td>
-<td>int</td>
-<td>—</td>
-<td><code>64</code></td>
-<td>Polyphase filter bank branches</td>
+<td><code>256</code></td>
+<td>Fractional-delay resolution: 1/L sample. It sets only the table size, not the cost.</td>
 </tr>
 <tr>
-<td><code>polyphase_taps</code></td>
-<td>int</td>
-<td>—</td>
-<td><code>24</code></td>
-<td>Taps per polyphase branch</td>
+<td><code>polyphase_taps</code>, <code>_beta</code>, <code>_cutoff_frac</code></td>
+<td><code>24</code>, <code>8.0</code>, <code>0.85</code></td>
+<td>Delay filter design. Leave these alone unless you're changing the filter on purpose.</td>
 </tr>
 <tr>
-<td><code>polyphase_beta</code></td>
-<td>float</td>
-<td>—</td>
-<td><code>8.0</code></td>
-<td>Kaiser window shape parameter</td>
+<td><code>atmosphere.iono_model</code></td>
+<td><code>klobuchar</code></td>
+<td>Ionosphere injected into the signal. <code>bdgim</code> is provisional. <code>none</code> gives a vacuum.</td>
 </tr>
 <tr>
-<td><code>polyphase_cutoff_frac</code></td>
-<td>float</td>
-<td>—</td>
-<td><code>0.85</code></td>
-<td>Filter cutoff fraction</td>
+<td><code>atmosphere.tropo_model</code></td>
+<td><code>saastamoinen</code></td>
+<td>Troposphere. <code>none</code> turns it off.</td>
+</tr>
+<tr>
+<td><code>atmosphere.klobuchar_source</code></td>
+<td><code>gps</code></td>
+<td>Which broadcast coefficients from the RINEX header drive Klobuchar</td>
+</tr>
+<tr>
+<td><code>continuity_tolerance_m</code>, <code>_deg</code></td>
+<td><code>0.001</code>, <code>0.01</code></td>
+<td>Largest jump allowed between trajectory segments</td>
 </tr>
 </tbody>
 </table>
-<h3 id="timing-constraints">Timing Constraints<a class="headerlink" href="#timing-constraints" title="Permanent link">&para;</a></h3>
-<p>The following relationships must hold:</p>
-<div class="arithmatex">\[T_s \ll T_\text{channel} \leq T_\text{frame}\]</div>
+<div class="admonition warning">
+<p class="admonition-title">Use one sample rate with <code>deploy_client.py</code></p>
+<p>The server accepts a different rate per RF band, but the recording client records a single
+<code>fs</code> in <code>recording.json</code> and uses it to scale the noise. Keep <code>sample_rate_hz</code> a single number
+when you record with <code>deploy_client.py</code>.</p>
+</div>
+<h3 id="choosing-a-sample-rate">Choosing a sample rate<a class="headerlink" href="#choosing-a-sample-rate" title="Permanent link">&para;</a></h3>
+<p>The sample rate <strong>is</strong> the bandwidth. Every signal is band-limited to it before it is delayed:
+flat to 0.6 × Nyquist, −6 dB at about 0.78 × Nyquist. Code timing is exact at any rate, so choose
+by the bandwidth you need, not to suit the chip rate.</p>
+<table>
+<thead>
+<tr>
+<th><code>sample_rate_hz</code></th>
+<th>Flat to</th>
+<th>Main lobes fully inside</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6.138 MHz</td>
+<td>±1.84 MHz</td>
+<td>GPS L1 C/A, L2C, GLONASS (centre channels)</td>
+</tr>
+<tr>
+<td>12.276 MHz</td>
+<td>±3.68 MHz</td>
+<td>All but L5</td>
+</tr>
+<tr>
+<td>24.552 MHz</td>
+<td>±7.37 MHz</td>
+<td>All but L5, including Galileo E1's BOC(6,1) lobes</td>
+</tr>
+<tr>
+<td>40.92 MHz</td>
+<td>±12.3 MHz</td>
+<td>All, including L5</td>
+</tr>
+</tbody>
+</table>
+<p>A signal wider than the flat band is still generated, band-limited, and the server logs a warning.
+GLONASS FDMA channels sit between −3.94 and +3.38 MHz from 1602 MHz, so at 12.276 MHz the lowest
+channels reach past the flat band. Use 24.552 MHz if you need every channel flat.</p>
+<p>Data volume and GPU time both grow linearly with the rate. See <a href="../../benchmarks/">Performance</a>.</p>
+<h3 id="timing-rules">Timing rules<a class="headerlink" href="#timing-rules" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[T_s \ll T_\text{channel} \le T_\text{frame}\]</div>
 <ul>
-<li><span class="arithmatex">\(T_\text{frame} / T_\text{channel}\)</span> must be an <strong>integer</strong> (exact number of snapshots per frame)</li>
-<li><span class="arithmatex">\(T_\text{channel} \times F_s\)</span> must be an <strong>integer</strong> (exact number of samples per snapshot)</li>
+<li><span class="arithmatex">\(T_\text{frame} / T_\text{channel}\)</span> must be an integer.</li>
+<li><span class="arithmatex">\(T_\text{channel} \times F_s\)</span> must be an integer, so that each snapshot covers a whole number
+  of samples. At 1 ms, any rate that is a whole number of kHz works.</li>
 </ul>
 
 
@@ -1313,9 +1838,53 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../deploy/monitoring/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Monitoring">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Monitoring
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../signals/" class="md-footer__link md-footer__link--next" aria-label="Next: Signals &amp; interference">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Signals & interference
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      GNSS Testbed Simulator · v3.5
+    </div>
   
   
 </div>
@@ -1333,12 +1902,14 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "content.code.copy", "content.tabs.link", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "navigation.instant", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../assets/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
       
     
   </body>
